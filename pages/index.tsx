@@ -1,8 +1,8 @@
 import React from 'react'
-import '../styles/AppTitle.scss'
+import AppTitle from '../src/components/AppTitle'
 
 const Home: React.FC = () => {
-  return <h1>pocket memo</h1>
+  return <AppTitle label='test' />
 }
 
 export default Home

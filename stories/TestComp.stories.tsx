@@ -4,7 +4,7 @@ import {
   ComponentMeta,
 } from '@storybook/react'
 
-import AppTitle from '../srt/components/AppTitle'
+import AppTitle from '../src/components/AppTitle'
 
 export default {
   title: 'Test/AppTitle',
