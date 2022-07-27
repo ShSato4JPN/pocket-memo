@@ -30,7 +30,7 @@ npm i -D eslint-plugin-storybook
 3. Stroybook 　の SASS 　対応
 
 ```
-npm install --save-dev sass-loader style-loader css-loader
+npm install --save-dev sass-loader style-loader css-loader sass
 ```
 
 インストール後、.storybook/main.js に以下のプロパティを追加
