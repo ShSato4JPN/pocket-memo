@@ -6,7 +6,7 @@ npm install --save-dev sass
 
 2. TypeScript 対応  
    css ファイルをインポートする際、型情報が無いとエラーが出る事がある。
-   その時は、プロジェクト作成時に生成されている next-env.d.ts に以下の内容を追加する。
+   その際は Next プロジェクト作成時に生成されている next-env.d.ts に以下の内容を追加する。
 
 ```
 declare module '*.css' {
