@@ -1,14 +1,25 @@
 import React from 'react'
-import AppTitle from '../src/components/AppTitle'
-import Container from '@mui/material/Container'
+import { Container, Box } from '@mui/material'
+import Header from '../src/components/header/Header'
 
 const Home: React.FC = () => {
   return (
-    <div className='root'>
-      <Container fixed>
-        <AppTitle label='test' />
-      </Container>
-    </div>
+    <Container component='main' maxWidth='xs'>
+      <Header />
+      <Box
+        sx={{
+          width: 300,
+          height: 300,
+          backgroundColor: 'background.primary',
+          '&:hover': {
+            backgroundColor: 'primary.main',
+            opacity: [0.9, 0.8, 0.7],
+          },
+        }}
+      >
+        test message
+      </Box>
+    </Container>
   )
 }
 
