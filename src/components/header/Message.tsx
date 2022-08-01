@@ -9,8 +9,7 @@ const Message = () => {
   return (
     <Box sx={_sx}>
       <Typography component='h3'>
-        Test message Test Messate Test Message this site is
-        PocketMemo
+        ちょっとしたメモをオンライン上で共有できます！
       </Typography>
     </Box>
   )

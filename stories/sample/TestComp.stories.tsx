@@ -7,7 +7,7 @@ import {
 import AppTitle from '../../src/sample/AppTitle'
 
 export default {
-  title: 'Test/AppTitle',
+  title: 'Sample/AppTitle',
   component: AppTitle,
 } as ComponentMeta<typeof AppTitle>
 

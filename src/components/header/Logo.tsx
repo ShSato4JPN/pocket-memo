@@ -1,20 +1,27 @@
 import React from 'react'
-import { Box } from '@mui/material'
+import { Box, AppBar } from '@mui/material'
 
 const Logo = () => {
   return (
     <>
       <Box
-        component='img'
+        component='h1'
         sx={{
-          height: 233,
-          width: 350,
-          maxHeight: { xs: 233, md: 167 },
-          maxWidth: { xs: 350, md: 250 },
+          textAlign: 'center',
         }}
-        alt='The house from the offer.'
-        src='/assets/images/sample.png'
-      />
+      >
+        <Box
+          component='img'
+          sx={{
+            height: 250,
+            width: 350,
+            maxHeight: { xs: 250, md: 184 },
+            maxWidth: { xs: 350, md: 250 },
+          }}
+          alt='image of site log.'
+          src='/assets/images/sample.png'
+        />
+      </Box>
     </>
   )
 }
