@@ -42,12 +42,6 @@ const CustomAppBar = () => {
     <AppBar position='static'>
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
-          <AdbIcon
-            sx={{
-              display: { xs: 'none', md: 'flex' },
-              mr: 1,
-            }}
-          />
           <Typography
             variant='h6'
             noWrap
@@ -65,7 +59,6 @@ const CustomAppBar = () => {
           >
             test
           </Typography>
-
           <Box
             sx={{
               flexGrow: 1,
@@ -96,9 +89,7 @@ const CustomAppBar = () => {
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
+              sx={{ display: { xs: 'block', md: 'none' } }}
             >
               {pages.map((page) => (
                 <MenuItem
@@ -112,12 +103,6 @@ const CustomAppBar = () => {
               ))}
             </Menu>
           </Box>
-          <AdbIcon
-            sx={{
-              display: { xs: 'flex', md: 'none' },
-              mr: 1,
-            }}
-          />
           <Typography
             variant='h5'
             noWrap
@@ -152,6 +137,7 @@ const CustomAppBar = () => {
                   display: 'block',
                 }}
               >
+                {' '}
                 {page}
               </Button>
             ))}
