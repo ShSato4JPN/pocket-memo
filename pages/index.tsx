@@ -1,12 +1,16 @@
 import React from 'react'
-import { Container, Box } from '@mui/material'
+import CustomAppBar from '../src/components/CustomAppBar'
 import Header from '../src/components/header/Header'
-import Example from '../src/sample/Example'
+import Body from '../src/components/body/Body'
+import Footer from '../src/components/footer/footer'
 
 const Home: React.FC = () => {
   return (
     <>
+      <CustomAppBar />
       <Header />
+      <Body />
+      <Footer />
     </>
   )
 }

@@ -6,11 +6,11 @@ const SampleBox: React.FC = () => {
     <Box
       sx={{
         backgroundColor: {
-          xs: 'orange',
-          sm: 'lightgreen',
-          md: 'pink',
-          lg: 'tomato',
-          xl: 'skyblue',
+          xs: 'orange', // 1 小
+          sm: 'lightgreen', // 2　 ↑
+          md: 'pink', // 3 中
+          lg: 'tomato', // 4　 ↓
+          xl: 'skyblue', // 5 大
         },
         width: 200,
         height: 300,

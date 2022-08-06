@@ -1,23 +1,21 @@
 import React from 'react'
 import Logo from './Logo'
 import Message from './Message'
-import CustomAppBar from './CustomAppBar'
 import Box from '@mui/material/Box'
+import { autocompleteClasses } from '@mui/material'
 
-const _sx = {
-  marginTop: 1,
-}
-
-const header = () => {
+const Header = () => {
   return (
-    <>
-      <CustomAppBar />
-      <Box sx={_sx}>
-        <Logo />
-        <Message />
-      </Box>
-    </>
+    <Box
+      sx={{
+        p: 1,
+        m: 1,
+      }}
+    >
+      <Logo />
+      <Message />
+    </Box>
   )
 }
 
-export default header
+export default Header

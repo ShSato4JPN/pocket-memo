@@ -5,23 +5,16 @@ const Logo = () => {
   return (
     <>
       <Box
-        component='h1'
+        component='img'
         sx={{
-          textAlign: 'center',
+          height: 250,
+          width: 350,
+          maxHeight: { xs: 250, md: 184 },
+          maxWidth: { xs: 350, md: 250 },
         }}
-      >
-        <Box
-          component='img'
-          sx={{
-            height: 250,
-            width: 350,
-            maxHeight: { xs: 250, md: 184 },
-            maxWidth: { xs: 350, md: 250 },
-          }}
-          alt='image of site log.'
-          src='/assets/images/sample.png'
-        />
-      </Box>
+        alt='Site Logo'
+        src='/assets/images/sample.png'
+      />
     </>
   )
 }
