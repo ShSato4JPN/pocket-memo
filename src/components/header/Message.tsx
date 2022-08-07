@@ -1,11 +1,11 @@
 import React from 'react'
 import { Box, Typography } from '@mui/material'
 
-const Message = () => {
+const Message: React.FC = () => {
   return (
     <Box>
-      <Typography component='h3'>
-        ちょっとしたメモをオンライン上で共有できます😎
+      <Typography component='h2'>
+        ちょっとしたメモをオンライン上で共有しましょう！
       </Typography>
     </Box>
   )

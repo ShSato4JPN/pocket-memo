@@ -1,20 +1,25 @@
 import React from 'react'
 import Logo from './Logo'
 import Message from './Message'
-import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
 
-const Header = () => {
+const Header: React.FC = () => {
   return (
-    <Box
+    <Grid
+      container
       sx={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
       }}
     >
-      <Logo />
-      <Message />
-    </Box>
+      <Grid item>
+        <Logo />
+      </Grid>
+      <Grid item>
+        <Message />
+      </Grid>
+    </Grid>
   )
 }
 

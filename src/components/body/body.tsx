@@ -1,22 +1,26 @@
 import React from 'react'
-import Box from '@mui/system/Box'
-import Buttons from './Buttons'
-import HowToUse from './HowToUse'
+import Grid from '@mui/material/Grid'
+import Buttons from './Buttons/Buttons'
+import HowToUse from './HowToUse/HowToUse'
 
-const body = () => {
+const body: React.FC = () => {
   return (
-    <>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
+    <Grid
+      container
+      spacing={{ xs: 3, md: 5 }}
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      <Grid item>
         <Buttons />
+      </Grid>
+      <Grid item>
         <HowToUse />
-      </Box>
-    </>
+      </Grid>
+    </Grid>
   )
 }
 

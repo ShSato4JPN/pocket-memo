@@ -1,7 +1,12 @@
 import React from 'react'
+import Copyright from './Copyright'
 
 const Footer = () => {
-  return <div>copyright</div>
+  return (
+    <>
+      <Copyright />
+    </>
+  )
 }
 
 export default Footer
