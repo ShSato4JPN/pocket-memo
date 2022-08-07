@@ -1,17 +1,34 @@
 import React from 'react'
-import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
 import Button from '@mui/material/Button'
 
-const box__sx = {
-  display: 'flex',
+{
+  /* <Grid container>
+              <Grid item xs>
+                <Link href='#' variant='body2'>
+                  {' '}
+                  Forgot password?{' '}
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href='#' variant='body2'>
+                  {' '}
+                  {"Don't have an account? Sign Up"}{' '}
+                </Link>
+              </Grid>
+            </Grid> */
 }
 
 const Buttons = () => {
   return (
-    <Box sx={box__sx}>
-      <Button>メモを作成する</Button>
-      <Button>メモを見る</Button>
-    </Box>
+    <Grid container width={250} height={50}>
+      <Grid item xs>
+        <Button>メモを作成する</Button>
+      </Grid>
+      <Grid item>
+        <Button>メモを見る</Button>
+      </Grid>
+    </Grid>
   )
 }
 

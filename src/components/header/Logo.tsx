@@ -11,6 +11,7 @@ const Logo = () => {
           width: 350,
           maxHeight: { xs: 250, md: 184 },
           maxWidth: { xs: 350, md: 250 },
+          justifyContent: 'center',
         }}
         alt='Site Logo'
         src='/assets/images/sample.png'
