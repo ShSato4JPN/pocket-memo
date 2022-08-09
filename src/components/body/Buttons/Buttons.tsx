@@ -10,20 +10,20 @@ const Buttons: React.FC = () => {
       spacing={2}
       sx={{
         display: 'flex',
-        flexDirection: { xs: 'column', md: 'row' },
+        flexDirection: { xs: 'column', sm: 'row' },
         alignItems: 'center',
       }}
     >
       <Grid item xs>
         <CreateButton
-          width={{ xs: 200, md: 230 }}
-          height={{ xs: 50, md: 50 }}
+          width={{ xs: 300, sm: 250 }}
+          height={{ xs: 50, sm: 60 }}
         />
       </Grid>
       <Grid item>
         <EditButton
-          width={{ xs: 200, md: 230 }}
-          height={{ xs: 50, md: 50 }}
+          width={{ xs: 300, sm: 250 }}
+          height={{ xs: 50, sm: 60 }}
         />
       </Grid>
     </Grid>

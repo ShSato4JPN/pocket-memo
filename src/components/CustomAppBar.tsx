@@ -11,7 +11,7 @@ import Button from '@mui/material/Button'
 import MenuItem from '@mui/material/MenuItem'
 import AdbIcon from '@mui/icons-material/Adb'
 
-const pages = ['Products', 'Pricing', 'Blog', 'add-sample']
+const pages = ['PocketMemoとは', '使い方', '作った人']
 
 const CustomAppBar = () => {
   const [anchorElNav, setAnchorElNav] =

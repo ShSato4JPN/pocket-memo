@@ -3,11 +3,11 @@ import { Box, Typography } from '@mui/material'
 
 const Message: React.FC = () => {
   return (
-    <Box>
-      <Typography component='h2'>
-        ちょっとしたメモをオンライン上で共有しましょう！
-      </Typography>
-    </Box>
+    <Typography component='h3' mt={5} textAlign='center'>
+      無料で使えるオンラインメモアプリです！
+      <br />
+      保存したメモはどの端末からでもアクセスする事ができます。
+    </Typography>
   )
 }
 

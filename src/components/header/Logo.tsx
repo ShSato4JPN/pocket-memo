@@ -5,15 +5,13 @@ const Logo: React.FC = () => {
   return (
     <Box
       component='img'
-      sx={{
-        width: 350,
-        height: 500,
-        maxHeight: { xs: 250, md: 184 },
-        maxWidth: { xs: 350, md: 250 },
-        justifyContent: 'center',
-      }}
       alt='Site Logo'
       src='/assets/images/sample.png'
+      sx={{
+        maxHeight: { xs: 300 },
+        maxWidth: { xs: 300 },
+        justifyContent: 'center',
+      }}
     />
   )
 }

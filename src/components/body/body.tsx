@@ -1,13 +1,13 @@
 import React from 'react'
 import Grid from '@mui/material/Grid'
 import Buttons from './Buttons/Buttons'
-import HowToUse from './HowToUse/HowToUse'
+import HowToForm from './HowToForm/HowToForm'
 
 const body: React.FC = () => {
   return (
     <Grid
       container
-      spacing={{ xs: 3, md: 5 }}
+      spacing={{ xs: 2, md: 4 }}
       sx={{
         display: 'flex',
         flexDirection: 'column',
@@ -18,7 +18,7 @@ const body: React.FC = () => {
         <Buttons />
       </Grid>
       <Grid item>
-        <HowToUse />
+        <HowToForm />
       </Grid>
     </Grid>
   )

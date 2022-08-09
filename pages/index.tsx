@@ -16,7 +16,7 @@ const Home: React.FC = () => {
         container
         spacing={5}
         sx={{
-          marginTop: 3,
+          marginTop: 1,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
