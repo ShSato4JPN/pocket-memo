@@ -2,7 +2,6 @@ import React from 'react'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
-import { fontSize } from '@mui/system'
 
 type Props = {
   title: string
@@ -13,42 +12,77 @@ type Props = {
 
 const HowToItem: React.FC<Props> = (props) => {
   return (
-    <Box>
-      <Grid
-        container
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          backgroundColor: 'orange',
-          width: 350,
-        }}
-      >
-        <Grid item>
-          <Grid container>
-            <Grid item>
-              <Typography>{props.no + 1}</Typography>
-            </Grid>
-            <Grid item>
-              <Typography>{props.title}</Typography>
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item>
+    <Grid
+      container
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        backgroundColor: 'orange',
+        alignItems: 'center',
+        width: 350,
+      }}
+    >
+      <Grid item>
+        <Box
+          component='div'
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            marginBottom: 1,
+          }}
+        >
           <Box
-            component='img'
-            alt={`how to items no ${props.no}`}
-            src={props.path}
+            component='div'
             sx={{
-              maxWidth: 250,
-              maxHeight: 250,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 10,
+              backgroundColor: 'primary.main',
+              marginRight: 1,
+              width: 40,
+              height: 40,
             }}
-          />
-        </Grid>
-        <Grid item>
-          <Typography>{props.message}</Typography>
-        </Grid>
+          >
+            <Typography variant='h5'>
+              {props.no + 1}
+            </Typography>
+          </Box>
+          <Box
+            component='div'
+            sx={{ backgroundColor: 'pink' }}
+          >
+            <Typography variant='h5'>
+              {props.title}
+            </Typography>
+          </Box>
+        </Box>
       </Grid>
-    </Box>
+      <Grid item>
+        <Box
+          component='img'
+          alt={`how to items no ${props.no}`}
+          src={props.path}
+          sx={{
+            maxWidth: 250,
+            maxHeight: 250,
+            marginBottom: 1,
+          }}
+        />
+      </Grid>
+      <Grid item>
+        <Box
+          component='div'
+          sx={{
+            textAlign: 'center',
+          }}
+        >
+          <Typography variant='h6'>
+            {props.message}
+          </Typography>
+        </Box>
+      </Grid>
+    </Grid>
   )
 }
 

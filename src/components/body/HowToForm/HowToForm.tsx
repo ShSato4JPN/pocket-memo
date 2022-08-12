@@ -18,7 +18,7 @@ const howToItems = [
     title: 'どこからでも確認！',
     path: '/assets/images/sample.png',
     message:
-      '世界中のどこからでも保存したメモを参照する事が可能です！',
+      '保存したメモを世界中のどこからでも確認することができます！',
   },
 ]
 
