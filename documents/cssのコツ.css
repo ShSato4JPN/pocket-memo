@@ -1,0 +1,40 @@
+```
+// HTML
+<div class="main">
+  <div class="sub1">sub1</div>
+  <div class="sub2">sub2</div>
+  <div class="sub3">sub3</div>
+  <div class="sub4">sub4</div>
+</div>
+
+// CSS
+.main {
+  display: flex; // 項目を横並びに
+  justify-content: center; // 子要素全体を幅に対して中央寄せ
+  align-items: center; // 子要素を高さに対して中央寄せ
+}
+
+.sub1 {
+  width: 100px;
+  height: 100px;
+  background-color: tomato;
+}
+
+.sub2 {
+  width: 400px;
+  height: 400px;
+  background-color: pink;
+}
+
+.sub3 {
+  width: 300px;
+  height: 300px;
+  background-color: skyblue;
+}
+
+.sub4 {
+  width: 200px;
+  height: 200px;
+  background-color: orange;
+}
+```

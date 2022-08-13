@@ -10,7 +10,6 @@ const Logo: React.FC = () => {
       sx={{
         maxHeight: { xs: 300 },
         maxWidth: { xs: 300 },
-        justifyContent: 'center',
       }}
     />
   )

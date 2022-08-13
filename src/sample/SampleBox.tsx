@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, Button } from '@mui/material'
 
 const SampleBox: React.FC = () => {
   return (
@@ -16,6 +16,7 @@ const SampleBox: React.FC = () => {
         height: 300,
       }}
     >
+      <Button variant='contained'>test</Button>
       <Typography>test message</Typography>
     </Box>
   )

@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from '@mui/material/Button'
-import { BreakPoints } from '../../../types/MuiTypes'
+import Typography from '@mui/material/Typography'
+import { BreakPoints } from '../../../../types/MuiTypes'
 
 type Props = {
   width: BreakPoints
@@ -15,7 +16,9 @@ const EditButton: React.FC<Props> = (props) => {
         ...props,
       }}
     >
-      メモを見る
+      <Typography fontFamily='monospace'>
+        メモを見る
+      </Typography>
     </Button>
   )
 }

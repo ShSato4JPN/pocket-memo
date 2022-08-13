@@ -7,7 +7,6 @@ const body: React.FC = () => {
   return (
     <Grid
       container
-      spacing={{ xs: 2, md: 4 }}
       sx={{
         display: 'flex',
         flexDirection: 'column',
@@ -17,7 +16,7 @@ const body: React.FC = () => {
       <Grid item>
         <Buttons />
       </Grid>
-      <Grid item>
+      <Grid item mt={6}>
         <HowToForm />
       </Grid>
     </Grid>

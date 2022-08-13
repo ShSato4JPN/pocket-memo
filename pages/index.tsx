@@ -1,11 +1,10 @@
 import React from 'react'
 import CustomAppBar from '../src/components/CustomAppBar'
 import CssBaseline from '@mui/material/CssBaseline'
-import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
-import Header from '../src/components/header/Header'
-import Body from '../src/components/body/Body'
-import Footer from '../src/components/footer/Footer'
+import Header from '../src/components/top/header/Header'
+import Body from '../src/components/top/body/Body'
+import Footer from '../src/components/top/footer/Footer'
 
 const Home: React.FC = () => {
   return (
@@ -14,21 +13,19 @@ const Home: React.FC = () => {
       <CustomAppBar />
       <Grid
         container
-        spacing={5}
         sx={{
-          marginTop: 1,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
         }}
       >
-        <Grid item>
+        <Grid item mt={3}>
           <Header />
         </Grid>
-        <Grid item>
+        <Grid item mt={5}>
           <Body />
         </Grid>
-        <Grid item>
+        <Grid item mt={2}>
           <Footer />
         </Grid>
       </Grid>
