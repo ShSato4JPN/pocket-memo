@@ -35,7 +35,6 @@ const HowToItem: React.FC<Props> = (props) => {
               flexDirection: 'row',
               justifyContent: 'center',
               alignItems: 'center',
-              borderBottom: 1,
               borderColor: 'primary.main',
               padding: 1,
             }}
