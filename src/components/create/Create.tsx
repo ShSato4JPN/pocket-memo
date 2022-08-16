@@ -61,7 +61,7 @@ export default function Create() {
             variant='h4'
             align='center'
           >
-            メモの作成
+            メモを作ろう！
           </Typography>
           <Stepper
             activeStep={activeStep}
