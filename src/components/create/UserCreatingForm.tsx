@@ -1,7 +1,6 @@
 import * as React from 'react'
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
-import TextField from '@mui/material/TextField'
 import Input from '@mui/material/Input'
 import InputLabel from '@mui/material/InputLabel'
 import InputAdornment from '@mui/material/InputAdornment'
@@ -9,6 +8,9 @@ import IconButton from '@mui/material/IconButton'
 import FormControl from '@mui/material/FormControl'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import Button from '@mui/material/Button'
+import Link from '@mui/material/Link'
+import Box from '@mui/material/Box'
 
 interface State {
   amount: string
@@ -18,7 +20,7 @@ interface State {
   showPassword: boolean
 }
 
-export default function MemoSettingForm() {
+export default function UserCreatingForm() {
   const [values, setValues] = React.useState<State>({
     amount: '',
     password: '',
@@ -47,17 +49,39 @@ export default function MemoSettingForm() {
   }
 
   return (
-    <>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
+    <Grid
+      container
+      spacing={4}
+      sx={{
+        direction: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <Grid item xs={12}>
+        <Box textAlign='right'>
+          <Link
+            href='/'
+            component='a'
+            underline='hover'
+            variant='subtitle2'
+          >
+            既にユーザを作成されている方
+          </Link>
+        </Box>
+      </Grid>
+      <Grid item xs={12}>
+        <Box
+          sx={{
+            paddingLeft: 10,
+            paddingRight: 10,
+          }}
+        >
           <Typography variant='h6' gutterBottom>
             ユーザ名 *
           </Typography>
           <FormControl
-            sx={{
-              margin: 1,
-              width: '50%',
-            }}
+            sx={{ width: '100%' }}
             variant='standard'
           >
             <InputLabel htmlFor='standard-adornment-password'>
@@ -74,13 +98,20 @@ export default function MemoSettingForm() {
               }}
             />
           </FormControl>
-        </Grid>
-        <Grid item xs={12}>
+        </Box>
+      </Grid>
+      <Grid item xs={12}>
+        <Box
+          sx={{
+            paddingLeft: 10,
+            paddingRight: 10,
+          }}
+        >
           <Typography variant='h6' gutterBottom>
             パスワード *
           </Typography>
           <FormControl
-            sx={{ margin: 1, width: '50%' }}
+            sx={{ width: '100%' }}
             variant='standard'
           >
             <InputLabel htmlFor='standard-adornment-password'>
@@ -114,17 +145,24 @@ export default function MemoSettingForm() {
               }
             />
           </FormControl>
-        </Grid>
-        <Grid item xs={12}>
+        </Box>
+      </Grid>
+      <Grid item xs={12}>
+        <Box
+          sx={{
+            paddingLeft: 10,
+            paddingRight: 10,
+          }}
+        >
           <Typography variant='h6' gutterBottom>
-            合言葉
+            パスワード（確認用）
           </Typography>
           <FormControl
-            sx={{ margin: 1, width: '50%' }}
+            sx={{ width: '100%' }}
             variant='standard'
           >
             <InputLabel htmlFor='standard-adornment-password'>
-              Aikotoba
+              Password
             </InputLabel>
             <Input
               id='standard-adornment-password'
@@ -154,8 +192,22 @@ export default function MemoSettingForm() {
               }
             />
           </FormControl>
-        </Grid>
+        </Box>
       </Grid>
-    </>
+      <Grid item xs={12}>
+        <Box textAlign='center'>
+          <Button
+            variant='outlined'
+            sx={{
+              padding: 1,
+              margin: 2,
+              width: '30%',
+            }}
+          >
+            ユーザを作成する
+          </Button>
+        </Box>
+      </Grid>
+    </Grid>
   )
 }

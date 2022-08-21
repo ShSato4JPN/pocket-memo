@@ -12,20 +12,21 @@ import {
   createTheme,
   ThemeProvider,
 } from '@mui/material/styles'
-import MemoCreateForm from './MemoCreateForm'
-import MemoSettingForm from './MemoSettingForm'
-import Review from './Review'
+import MemoCreatingForm from './MemoCreatingForm'
+import UserCreatingForm from './UserCreatingForm'
+import OtherSettingForm from './OtherSettingForm'
+import CustomAppBar from '../CustomAppBar'
 
-const steps = ['メモを作成', 'IDとパスワードの設定', '確認']
+const steps = ['ユーザを作成', 'メモを作成', '規約の確認']
 
 function getStepContent(step: number) {
   switch (step) {
     case 0:
-      return <MemoCreateForm />
+      return <UserCreatingForm />
     case 1:
-      return <MemoSettingForm />
+      return <MemoCreatingForm />
     case 2:
-      return <Review />
+      return <OtherSettingForm />
     default:
       throw new Error('Unknown step')
   }
@@ -47,6 +48,7 @@ export default function Create() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <CustomAppBar />
       <Container
         component='main'
         maxWidth='md'
