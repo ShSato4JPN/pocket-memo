@@ -6,7 +6,7 @@ import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
 
-type Props = {
+interface Props {
   title: string
   path: string
   message: string

@@ -13,20 +13,20 @@ import Link from '@mui/material/Link'
 import Box from '@mui/material/Box'
 
 interface State {
-  amount: string
+  userName: string
   password: string
-  weight: string
-  weightRange: string
+  checkPassword: string
   showPassword: boolean
+  showCheckPassword: boolean
 }
 
 export default function UserCreatingForm() {
   const [values, setValues] = React.useState<State>({
-    amount: '',
+    userName: '',
     password: '',
-    weight: '',
-    weightRange: '',
+    checkPassword: '',
     showPassword: false,
+    showCheckPassword: false,
   })
 
   const handleChange =
@@ -39,6 +39,13 @@ export default function UserCreatingForm() {
     setValues({
       ...values,
       showPassword: !values.showPassword,
+    })
+  }
+
+  const handleClickCheckShowPassword = () => {
+    setValues({
+      ...values,
+      showCheckPassword: !values.showCheckPassword,
     })
   }
 
@@ -90,8 +97,8 @@ export default function UserCreatingForm() {
             <Input
               id='standard-adornment-password'
               type='text'
-              value={values.password}
-              onChange={handleChange('password')}
+              value={values.userName}
+              onChange={handleChange('userName')}
               sx={{
                 fontFamily: 'monospace',
                 fontSize: 20,
@@ -167,10 +174,12 @@ export default function UserCreatingForm() {
             <Input
               id='standard-adornment-password'
               type={
-                values.showPassword ? 'text' : 'password'
+                values.showCheckPassword
+                  ? 'text'
+                  : 'password'
               }
-              value={values.password}
-              onChange={handleChange('password')}
+              value={values.checkPassword}
+              onChange={handleChange('checkPassword')}
               sx={{
                 fontFamily: 'monospace',
                 fontSize: 20,
@@ -179,10 +188,10 @@ export default function UserCreatingForm() {
                 <InputAdornment position='end'>
                   <IconButton
                     aria-label='toggle password visibility'
-                    onClick={handleClickShowPassword}
+                    onClick={handleClickCheckShowPassword}
                     onMouseDown={handleMouseDownPassword}
                   >
-                    {values.showPassword ? (
+                    {values.showCheckPassword ? (
                       <VisibilityOff />
                     ) : (
                       <Visibility />
@@ -200,7 +209,7 @@ export default function UserCreatingForm() {
             variant='outlined'
             sx={{
               padding: 1,
-              margin: 2,
+              margin: 1.5,
               width: '30%',
             }}
           >

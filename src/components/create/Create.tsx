@@ -14,7 +14,7 @@ import {
 } from '@mui/material/styles'
 import MemoCreatingForm from './MemoCreatingForm'
 import UserCreatingForm from './UserCreatingForm'
-import OtherSettingForm from './OtherSettingForm'
+import TermsForm from './TermsForm'
 import CustomAppBar from '../CustomAppBar'
 
 const steps = ['ユーザを作成', 'メモを作成', '規約の確認']
@@ -26,7 +26,7 @@ function getStepContent(step: number) {
     case 1:
       return <MemoCreatingForm />
     case 2:
-      return <OtherSettingForm />
+      return <TermsForm />
     default:
       throw new Error('Unknown step')
   }
@@ -55,7 +55,7 @@ export default function Create() {
         sx={{ mb: 4 }}
       >
         <Paper
-          variant='outlined' // d
+          variant='outlined'
           sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }} // my : margin-top and margin-bottom2
         >
           <Typography

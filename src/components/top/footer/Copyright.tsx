@@ -1,7 +1,7 @@
 import React from 'react'
 import Typography from '@mui/material/Typography'
 
-const Copyright: React.FC = (props) => {
+const Copyright: React.FC = () => {
   return (
     <Typography
       variant='body2'
