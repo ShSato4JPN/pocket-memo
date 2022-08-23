@@ -2,40 +2,33 @@ import React from 'react'
 import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import Input from '@mui/material/Input'
-import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 
-interface Props {
-  text: string
-  setText: React.Dispatch<React.SetStateAction<string>>
-  setCount: React.Dispatch<React.SetStateAction<number>>
-  label: string
-  limit: number
-  valid: boolean
-}
+const CustomTextField: React.FC = () => {
+  const [backColor, setBackBolor] = React.useState('orange')
+  const [value, setValue] = React.useState<string>('')
 
-const InputLimitationTextField: React.FC<Props> = (
-  props
-) => {
-  // キー入力イベント
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    let inputText = event.target.value
-    if (inputText.length <= props.limit) {
-      props.setText(inputText)
-      props.setCount(inputText.length)
-    }
-    return
+    console.log(event.target.value)
+    setValue(event.target.value)
   }
 
-  //　フォーカスアウトイベント
-  const handleBlur = () => {}
+  const handleFocus = () => {
+    setBackBolor('skyblue')
+  }
+
+  const handleBlur = () => {
+    setBackBolor('tomato')
+  }
 
   return (
     <Box
       sx={{
-        width: '100%',
+        width: 300,
+        height: 300,
+        backgroundColor: backColor,
       }}
     >
       <FormControl
@@ -43,16 +36,15 @@ const InputLimitationTextField: React.FC<Props> = (
         variant='standard'
       >
         <InputLabel htmlFor='standard-adornment-password'>
-          {props.label}
+          {value}
         </InputLabel>
-        <TextField
+        <Input
           id='standard-adornment-password'
           type='text'
-          value={props.text}
+          value={value}
           onChange={handleChange}
+          onFocus={handleFocus}
           onBlur={handleBlur}
-          error
-          helperText='test'
           sx={{
             fontFamily: 'monospace',
             fontSize: 20,
@@ -63,4 +55,4 @@ const InputLimitationTextField: React.FC<Props> = (
   )
 }
 
-export default InputLimitationTextField
+export default CustomTextField
