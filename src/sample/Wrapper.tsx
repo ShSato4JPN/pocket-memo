@@ -4,19 +4,21 @@ import Typography from '@mui/material/Typography'
 
 const Wrapper = () => {
   const [text, setText] = React.useState<string>('')
-  const [count, setCount] = React.useState<number>(0)
   return (
     <>
       <InputLimitationTextField
+        id={'custom-input-form'}
         text={text}
         setText={setText}
-        setCount={setCount}
-        label={'sample'}
-        limit={10}
-        valid={true}
+        label={'ユーザーID'}
+        min={8}
+        max={15}
+        pattern={
+          '(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\\d)[a-zA-Z\\d]'
+        }
       />
-      <Typography sx={{ backgroundColor: 'pink' }}>
-        {count} / 10
+      <Typography sx={{ backgroundColor: 'lightgrey' }}>
+        {text}
       </Typography>
     </>
   )
