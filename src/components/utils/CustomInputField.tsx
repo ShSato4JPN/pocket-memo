@@ -4,6 +4,7 @@ import InputLabel from '@mui/material/InputLabel'
 import Input from '@mui/material/Input'
 import Box from '@mui/material/Box'
 import FormHelperText from '@mui/material/FormHelperText'
+import { text } from 'stream/consumers'
 
 interface Props {
   text: string
@@ -15,11 +16,11 @@ interface Props {
   id: string
 }
 
-const InputLimitationTextField: React.FC<Props> = (
-  props
-) => {
+const CustomInputField: React.FC<Props> = (props) => {
   // 入力フォームのエラーチェック用
   const [isError, setIsError] = useState<boolean>(false)
+  // 入力フォームのエラーチェック用
+  const [isOk, setIsOk] = useState<boolean>(false)
   // 入力文字数カウント用
   const [count, setCount] = useState<number>(0)
   // InputLabel の表示/非表示
@@ -30,30 +31,45 @@ const InputLimitationTextField: React.FC<Props> = (
   //　半角英小文字大文字数字をそれぞれ1種類以上含む min 文字以上 max 文字以下
   const _pattern = `^${props.pattern}{${props.min},${props.max}}\$`
   // エラーメッセージ
-  const _errorMessage = `全角文字はNGです。半角英数字 (大文字/小文字) を最低１文字含め、${props.min}〜${props.max}文字以内で入力してください。`
+  const _errorMessage = `半角英字（全角/半角）と数字をそれぞれ使用して ${props.min}〜${props.max}文字以内で入力してください。`
+  // 項目チェック OK メッセージ
+  const _validOkMessage = '　　問題ありません👍'
+  // 項目チェック NG メッセージ
+  const _validNoMessage = '　　入力条件を満たしていません🥺'
 
   // キー入力イベント
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     let inputText = event.target.value
+    // 入力制限チェック
     if (inputText.length <= props.max) {
       props.setText(inputText)
       setCount(inputText.length)
     }
-    return
+    // OK メッセージ表示チェック
+    if (
+      props.min <= props.text.length &&
+      isMatchPattern()
+    ) {
+      setIsOk(true)
+    } else {
+      setIsOk(false)
+    }
   }
   // フォーカスイン
   const handleFocusIn = () => {
     setVisible(true)
-    return
   }
   //　フォーカスアウト
   const handleBlur = () => {
     setVisible(false)
+    setIsError(!isMatchPattern())
+  }
+
+  const isMatchPattern = () => {
     const regex = new RegExp(_pattern)
-    setIsError(!regex.test(props.text))
-    return
+    return regex.test(props.text)
   }
 
   return (
@@ -68,7 +84,10 @@ const InputLimitationTextField: React.FC<Props> = (
       >
         <InputLabel htmlFor={props.id}>
           {props.label}
-          {visible ? _limitFormat : ''}
+          {visible
+            ? _limitFormat +
+              (isOk ? _validOkMessage : _validNoMessage)
+            : ''}
         </InputLabel>
         <Input
           id={props.id}
@@ -91,4 +110,4 @@ const InputLimitationTextField: React.FC<Props> = (
   )
 }
 
-export default InputLimitationTextField
+export default CustomInputField

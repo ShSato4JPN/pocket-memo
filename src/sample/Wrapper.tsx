@@ -1,12 +1,14 @@
 import React from 'react'
-import InputLimitationTextField from '../components/utils/InputLimitationTextField'
+import CustomInputField from '../components/utils/CustomInputField'
+import CustomPasswordField from '../components/utils/CustomPasswordField'
 import Typography from '@mui/material/Typography'
 
 const Wrapper = () => {
   const [text, setText] = React.useState<string>('')
+  const [text2, setText2] = React.useState<string>('')
   return (
     <>
-      <InputLimitationTextField
+      <CustomInputField
         id={'custom-input-form'}
         text={text}
         setText={setText}
@@ -19,6 +21,18 @@ const Wrapper = () => {
       />
       <Typography sx={{ backgroundColor: 'lightgrey' }}>
         {text}
+      </Typography>
+
+      <CustomPasswordField
+        id={'custom-input-form'}
+        text={text2}
+        setText={setText2}
+        label={'パスワード'}
+        min={8}
+        max={20}
+      />
+      <Typography sx={{ backgroundColor: 'lightgrey' }}>
+        {text2}
       </Typography>
     </>
   )
