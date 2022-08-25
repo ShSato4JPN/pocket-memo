@@ -4,7 +4,6 @@ import InputLabel from '@mui/material/InputLabel'
 import Input from '@mui/material/Input'
 import Box from '@mui/material/Box'
 import FormHelperText from '@mui/material/FormHelperText'
-import { text } from 'stream/consumers'
 
 interface Props {
   text: string
@@ -12,7 +11,6 @@ interface Props {
   label: string
   min: number
   max: number
-  pattern: string
   id: string
 }
 
@@ -28,10 +26,10 @@ const CustomInputField: React.FC<Props> = (props) => {
 
   // 半角スペースだと最適化されるため、全角スペースで調整する
   const _limitFormat = `　　${count} / ${props.max}`
-  //　半角英小文字大文字数字をそれぞれ1種類以上含む min 文字以上 max 文字以下
-  const _pattern = `^${props.pattern}{${props.min},${props.max}}\$`
   // エラーメッセージ
-  const _errorMessage = `半角英字（全角/半角）と数字をそれぞれ使用して ${props.min}〜${props.max}文字以内で入力してください。`
+  const _errorMessage = `半角英字(大文字と小文字)、数字、記号を組み合わせて ${props.min}〜${props.max} 文字以内で入力してください。`
+  //　半角英小文字大文字数字をそれぞれ1種類以上含む min 文字以上 max 文字以下
+  const _pattern = `^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\\d)(?=.*?[!-\\/:-@[-\`{-~])[!-~()]{${props.min},${props.max}}\$`
   // 項目チェック OK メッセージ
   const _validOkMessage = '　　問題ありません👍'
   // 項目チェック NG メッセージ
@@ -50,7 +48,7 @@ const CustomInputField: React.FC<Props> = (props) => {
     // OK メッセージ表示チェック
     if (
       props.min <= props.text.length &&
-      isMatchPattern()
+      isMatchWithPattern(inputText)
     ) {
       setIsOk(true)
     } else {
@@ -64,12 +62,12 @@ const CustomInputField: React.FC<Props> = (props) => {
   //　フォーカスアウト
   const handleBlur = () => {
     setVisible(false)
-    setIsError(!isMatchPattern())
+    setIsError(!isMatchWithPattern(props.text))
   }
 
-  const isMatchPattern = () => {
+  const isMatchWithPattern = (text: string) => {
     const regex = new RegExp(_pattern)
-    return regex.test(props.text)
+    return regex.test(text)
   }
 
   return (

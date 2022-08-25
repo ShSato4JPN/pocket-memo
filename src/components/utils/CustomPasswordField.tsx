@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton'
 import FormHelperText from '@mui/material/FormHelperText'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import { isMuiElement } from '@mui/material'
 
 interface Props {
   text: string
@@ -33,7 +34,9 @@ const CustomPasswordField: React.FC<Props> = (props) => {
   // 半角スペースだと最適化されるため、全角スペースで調整する
   const _limitFormat = `　　${count} / ${props.max}`
   // エラーメッセージ
-  const _errorMessage = `${props.min}〜${props.max} 文字以内で入力してください。`
+  const _errorMessage = `半角英字、数字、記号を組み合わせて ${props.min}〜${props.max} 文字以内で入力してください。`
+  //　半角英小文字大文字数字をそれぞれ1種類以上含む min 文字以上 max 文字以下
+  const _pattern = `^(?=.*?[a-z])(?=.*?\\d)(?=.*?[!-\\/:-@[-\`{-~])[!-~()]{${props.min},${props.max}}\$`
   // 項目チェック OK メッセージ
   const _validOkMessage = '　　問題ありません👍'
   // 項目チェック NG メッセージ
@@ -50,7 +53,10 @@ const CustomPasswordField: React.FC<Props> = (props) => {
       setCount(inputText.length)
     }
     // OK メッセージ表示チェック
-    if (props.min <= inputText.length) {
+    if (
+      props.min <= props.text.length &&
+      isMatchWithPattern(inputText)
+    ) {
       setIsOk(true)
     } else {
       setIsOk(false)
@@ -73,12 +79,12 @@ const CustomPasswordField: React.FC<Props> = (props) => {
   //　フォーカスアウト
   const handleBlur = () => {
     setVisible(false)
-    setShowText(false)
-    if (props.text.length < props.min) {
-      setIsError(true)
-    } else {
-      setIsError(false)
-    }
+    setIsError(!isMatchWithPattern(props.text))
+  }
+
+  const isMatchWithPattern = (text: string) => {
+    const regex = new RegExp(_pattern)
+    return regex.test(text)
   }
 
   return (

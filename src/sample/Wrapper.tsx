@@ -15,9 +15,6 @@ const Wrapper = () => {
         label={'ユーザーID'}
         min={8}
         max={15}
-        pattern={
-          '(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\\d)[a-zA-Z\\d]'
-        }
       />
       <Typography sx={{ backgroundColor: 'lightgrey' }}>
         {text}
