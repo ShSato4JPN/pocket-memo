@@ -65,6 +65,7 @@ const CustomPasswordField: React.FC<Props> = (props) => {
   // 表示アイコンクリック（パスワード表示/非表示）
   const handleClickShowPassword = () => {
     setShowText(!showText)
+    setVisible(!visible)
   }
   // フォーム送信処理キャンセル
   const handleMouseDownPassword = (
@@ -74,14 +75,15 @@ const CustomPasswordField: React.FC<Props> = (props) => {
   }
   // フォーカスイン
   const handleFocusIn = () => {
-    setVisible(true)
+    setShowText(true)
   }
   //　フォーカスアウト
   const handleBlur = () => {
+    setShowText(false)
     setVisible(false)
     setIsError(!isMatchWithPattern(props.text))
   }
-
+  //　パターンマッチ
   const isMatchWithPattern = (text: string) => {
     const regex = new RegExp(_pattern)
     return regex.test(text)
@@ -93,20 +95,17 @@ const CustomPasswordField: React.FC<Props> = (props) => {
         width: '100%',
       }}
     >
-      <FormControl
-        sx={{ width: '100%' }}
-        variant='standard'
-      >
+      <FormControl sx={{ width: '100%' }} variant='standard'>
         <InputLabel htmlFor={props.id}>
           {props.label}
-          {visible
+          {showText
             ? _limitFormat +
               (isOk ? _validOkMessage : _validNoMessage)
             : ''}
         </InputLabel>
         <Input
           id={props.id}
-          type={showText ? 'text' : 'password'}
+          type={visible ? 'text' : 'password'}
           value={props.text}
           onFocus={handleFocusIn}
           onBlur={handleBlur}
@@ -123,11 +122,7 @@ const CustomPasswordField: React.FC<Props> = (props) => {
                 onClick={handleClickShowPassword}
                 onMouseDown={handleMouseDownPassword}
               >
-                {visible ? (
-                  <VisibilityOff />
-                ) : (
-                  <Visibility />
-                )}
+                {visible ? <VisibilityOff /> : <Visibility />}
               </IconButton>
             </InputAdornment>
           }

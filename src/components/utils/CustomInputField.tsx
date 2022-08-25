@@ -64,7 +64,7 @@ const CustomInputField: React.FC<Props> = (props) => {
     setVisible(false)
     setIsError(!isMatchWithPattern(props.text))
   }
-
+  //　パターンマッチ
   const isMatchWithPattern = (text: string) => {
     const regex = new RegExp(_pattern)
     return regex.test(text)

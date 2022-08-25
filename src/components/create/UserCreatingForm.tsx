@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
 import Input from '@mui/material/Input'
@@ -11,6 +11,8 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import Button from '@mui/material/Button'
 import Link from '@mui/material/Link'
 import Box from '@mui/material/Box'
+import CustomInputField from '../../components/utils/CustomInputField'
+import CustomPasswordField from '../../components/utils/CustomPasswordField'
 
 interface State {
   userName: string
@@ -21,6 +23,13 @@ interface State {
 }
 
 export default function UserCreatingForm() {
+  //　ユーザID
+  const [userId, setUserId] = useState<string>('')
+  // 本パスワード
+  const [password, setPassword] = useState<string>('')
+  // 確認用パスワード
+  const [checkPassword, setCheckPassword] = useState<string>('')
+
   const [values, setValues] = React.useState<State>({
     userName: '',
     password: '',
@@ -87,24 +96,14 @@ export default function UserCreatingForm() {
           <Typography variant='h6' gutterBottom>
             ユーザ名 *
           </Typography>
-          <FormControl
-            sx={{ width: '100%' }}
-            variant='standard'
-          >
-            <InputLabel htmlFor='standard-adornment-password'>
-              UserName
-            </InputLabel>
-            <Input
-              id='standard-adornment-password'
-              type='text'
-              value={values.userName}
-              onChange={handleChange('userName')}
-              sx={{
-                fontFamily: 'monospace',
-                fontSize: 20,
-              }}
-            />
-          </FormControl>
+          <CustomInputField
+            id={'custom-input-form'}
+            text={userId}
+            setText={setUserId}
+            label={'ユーザーID'}
+            min={8}
+            max={15}
+          />
         </Box>
       </Grid>
       <Grid item xs={12}>
@@ -117,41 +116,17 @@ export default function UserCreatingForm() {
           <Typography variant='h6' gutterBottom>
             パスワード *
           </Typography>
-          <FormControl
-            sx={{ width: '100%' }}
-            variant='standard'
-          >
-            <InputLabel htmlFor='standard-adornment-password'>
-              Password
-            </InputLabel>
-            <Input
-              id='standard-adornment-password'
-              type={
-                values.showPassword ? 'text' : 'password'
-              }
-              value={values.password}
-              onChange={handleChange('password')}
-              sx={{
-                fontFamily: 'monospace',
-                fontSize: 20,
-              }}
-              endAdornment={
-                <InputAdornment position='end'>
-                  <IconButton
-                    aria-label='toggle password visibility'
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                  >
-                    {values.showPassword ? (
-                      <VisibilityOff />
-                    ) : (
-                      <Visibility />
-                    )}
-                  </IconButton>
-                </InputAdornment>
-              }
-            />
-          </FormControl>
+          <InputLabel htmlFor='standard-adornment-password'>
+            Password
+          </InputLabel>
+          <CustomPasswordField
+            id={'custom-input-form'}
+            text={password}
+            setText={setPassword}
+            label={'パスワード'}
+            min={8}
+            max={20}
+          />
         </Box>
       </Grid>
       <Grid item xs={12}>
@@ -164,43 +139,14 @@ export default function UserCreatingForm() {
           <Typography variant='h6' gutterBottom>
             パスワード（確認用）
           </Typography>
-          <FormControl
-            sx={{ width: '100%' }}
-            variant='standard'
-          >
-            <InputLabel htmlFor='standard-adornment-password'>
-              Password
-            </InputLabel>
-            <Input
-              id='standard-adornment-password'
-              type={
-                values.showCheckPassword
-                  ? 'text'
-                  : 'password'
-              }
-              value={values.checkPassword}
-              onChange={handleChange('checkPassword')}
-              sx={{
-                fontFamily: 'monospace',
-                fontSize: 20,
-              }}
-              endAdornment={
-                <InputAdornment position='end'>
-                  <IconButton
-                    aria-label='toggle password visibility'
-                    onClick={handleClickCheckShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                  >
-                    {values.showCheckPassword ? (
-                      <VisibilityOff />
-                    ) : (
-                      <Visibility />
-                    )}
-                  </IconButton>
-                </InputAdornment>
-              }
-            />
-          </FormControl>
+          <CustomPasswordField
+            id={'custom-input-form'}
+            text={checkPassword}
+            setText={setCheckPassword}
+            label={'パスワード'}
+            min={8}
+            max={20}
+          />
         </Box>
       </Grid>
       <Grid item xs={12}>
