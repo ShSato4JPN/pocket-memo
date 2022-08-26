@@ -8,7 +8,6 @@ import IconButton from '@mui/material/IconButton'
 import FormHelperText from '@mui/material/FormHelperText'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
-import { isMuiElement } from '@mui/material'
 
 interface Props {
   text: string

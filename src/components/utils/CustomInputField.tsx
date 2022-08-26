@@ -76,10 +76,7 @@ const CustomInputField: React.FC<Props> = (props) => {
         width: '100%',
       }}
     >
-      <FormControl
-        sx={{ width: '100%' }}
-        variant='standard'
-      >
+      <FormControl sx={{ width: '100%' }} variant='standard'>
         <InputLabel htmlFor={props.id}>
           {props.label}
           {visible

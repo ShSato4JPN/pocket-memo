@@ -1,7 +1,7 @@
 import React from 'react'
 import CustomInputField from '../components/utils/CustomInputField'
 import CustomPasswordField from '../components/utils/CustomPasswordField'
-import CustomTextArea from '../components/utils/CustomTextArea'
+import CustomTextArea from '../components/utils/MemoEditArea'
 import Typography from '@mui/material/Typography'
 
 const Wrapper = () => {
@@ -37,7 +37,6 @@ const Wrapper = () => {
         id={'custom-input-form'}
         text={text3}
         setText={setText3}
-        label={'smaple'}
       />
       <Typography sx={{ backgroundColor: 'lightgrey' }}>
         {text3}
