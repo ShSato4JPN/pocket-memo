@@ -42,9 +42,7 @@ const CustomPasswordField: React.FC<Props> = (props) => {
   const _validNoMessage = '　　入力条件を満たしていません🥺'
 
   // キー入力イベント
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     let inputText = event.target.value
     // 入力制限チェック
     if (inputText.length <= props.max) {
@@ -64,7 +62,6 @@ const CustomPasswordField: React.FC<Props> = (props) => {
   // 表示アイコンクリック（パスワード表示/非表示）
   const handleClickShowPassword = () => {
     setShowText(!showText)
-    setVisible(!visible)
   }
   // フォーム送信処理キャンセル
   const handleMouseDownPassword = (
@@ -74,7 +71,7 @@ const CustomPasswordField: React.FC<Props> = (props) => {
   }
   // フォーカスイン
   const handleFocusIn = () => {
-    setShowText(true)
+    setVisible(true)
   }
   //　フォーカスアウト
   const handleBlur = () => {
@@ -97,14 +94,13 @@ const CustomPasswordField: React.FC<Props> = (props) => {
       <FormControl sx={{ width: '100%' }} variant='standard'>
         <InputLabel htmlFor={props.id}>
           {props.label}
-          {showText
-            ? _limitFormat +
-              (isOk ? _validOkMessage : _validNoMessage)
+          {visible
+            ? _limitFormat + (isOk ? _validOkMessage : _validNoMessage)
             : ''}
         </InputLabel>
         <Input
           id={props.id}
-          type={visible ? 'text' : 'password'}
+          type={showText ? 'text' : 'password'}
           value={props.text}
           onFocus={handleFocusIn}
           onBlur={handleBlur}
@@ -121,7 +117,7 @@ const CustomPasswordField: React.FC<Props> = (props) => {
                 onClick={handleClickShowPassword}
                 onMouseDown={handleMouseDownPassword}
               >
-                {visible ? <VisibilityOff /> : <Visibility />}
+                {showText ? <VisibilityOff /> : <Visibility />}
               </IconButton>
             </InputAdornment>
           }
