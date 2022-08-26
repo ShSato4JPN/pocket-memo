@@ -1,11 +1,13 @@
 import React from 'react'
 import CustomInputField from '../components/utils/CustomInputField'
 import CustomPasswordField from '../components/utils/CustomPasswordField'
+import CustomTextArea from '../components/utils/CustomTextArea'
 import Typography from '@mui/material/Typography'
 
 const Wrapper = () => {
   const [text, setText] = React.useState<string>('')
   const [text2, setText2] = React.useState<string>('')
+  const [text3, setText3] = React.useState<string>('')
   return (
     <>
       <CustomInputField
@@ -30,6 +32,15 @@ const Wrapper = () => {
       />
       <Typography sx={{ backgroundColor: 'lightgrey' }}>
         {text2}
+      </Typography>
+      <CustomTextArea
+        id={'custom-input-form'}
+        text={text3}
+        setText={setText3}
+        label={'smaple'}
+      />
+      <Typography sx={{ backgroundColor: 'lightgrey' }}>
+        {text3}
       </Typography>
     </>
   )
