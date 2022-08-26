@@ -82,11 +82,7 @@ export default function MemoCreatingForm() {
           保存期間 *
         </Typography>
         <FormControl>
-          <Select
-            name='period'
-            id='period'
-            defaultValue={3}
-          >
+          <Select name='period' id='period' defaultValue={3}>
             {[1, 2, 3, 4, 5, 6, 7].map((v) => (
               <MenuItem value={v} key={v}>
                 {v}日
@@ -100,10 +96,7 @@ export default function MemoCreatingForm() {
           メモの共有
         </Typography>
         <FormGroup>
-          <FormControlLabel
-            control={<Checkbox />}
-            label='許可する'
-          />
+          <FormControlLabel control={<Checkbox />} label='許可する' />
         </FormGroup>
       </Grid>
       <Grid item xs={5}>

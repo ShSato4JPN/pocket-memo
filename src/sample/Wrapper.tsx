@@ -1,7 +1,7 @@
 import React from 'react'
-import CustomInputField from '../components/utils/CustomInputField'
-import CustomPasswordField from '../components/utils/CustomPasswordField'
-import CustomTextArea from '../components/utils/MemoEditArea'
+import UserIdField from '../components/utils/UserIdField'
+import PasswordField from '../components/utils/PasswordField'
+import MemoEditArea from '../components/utils/MemoEditArea'
 import Typography from '@mui/material/Typography'
 
 const Wrapper = () => {
@@ -10,7 +10,7 @@ const Wrapper = () => {
   const [text3, setText3] = React.useState<string>('')
   return (
     <>
-      <CustomInputField
+      <UserIdField
         id={'custom-input-form'}
         text={text}
         setText={setText}
@@ -22,7 +22,7 @@ const Wrapper = () => {
         {text}
       </Typography>
 
-      <CustomPasswordField
+      <PasswordField
         id={'custom-input-form'}
         text={text2}
         setText={setText2}
@@ -33,7 +33,7 @@ const Wrapper = () => {
       <Typography sx={{ backgroundColor: 'lightgrey' }}>
         {text2}
       </Typography>
-      <CustomTextArea
+      <MemoEditArea
         id={'custom-input-form'}
         text={text3}
         setText={setText3}

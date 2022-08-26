@@ -11,8 +11,8 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import Button from '@mui/material/Button'
 import Link from '@mui/material/Link'
 import Box from '@mui/material/Box'
-import CustomInputField from '../../components/utils/CustomInputField'
-import CustomPasswordField from '../../components/utils/CustomPasswordField'
+import UserIdField from '../utils/UserIdField'
+import PasswordField from '../utils/PasswordField'
 
 interface State {
   userName: string
@@ -96,7 +96,7 @@ export default function UserCreatingForm() {
           <Typography variant='h6' gutterBottom>
             ユーザ名 *
           </Typography>
-          <CustomInputField
+          <UserIdField
             id={'custom-input-form'}
             text={userId}
             setText={setUserId}
@@ -119,7 +119,7 @@ export default function UserCreatingForm() {
           <InputLabel htmlFor='standard-adornment-password'>
             Password
           </InputLabel>
-          <CustomPasswordField
+          <PasswordField
             id={'custom-input-form'}
             text={password}
             setText={setPassword}
@@ -139,7 +139,7 @@ export default function UserCreatingForm() {
           <Typography variant='h6' gutterBottom>
             パスワード（確認用）
           </Typography>
-          <CustomPasswordField
+          <PasswordField
             id={'custom-input-form'}
             text={checkPassword}
             setText={setCheckPassword}
