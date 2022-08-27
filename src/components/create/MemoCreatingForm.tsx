@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography'
 import InputLabel from '@mui/material/InputLabel'
 import Input from '@mui/material/Input'
 import FormControl from '@mui/material/FormControl'
-import Select from '@mui/material/Select'
+import Select, { SelectChangeEvent } from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import Checkbox from '@mui/material/Checkbox'
 import FormGroup from '@mui/material/FormGroup'
@@ -13,30 +13,15 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import MemoTitleField from '../utils/MemoTitleField'
 import MemoEditArea from '../utils/MemoEditArea'
 
-interface State {
-  amount: string
-  password: string
-  weight: string
-  weightRange: string
-  showPassword: boolean
-}
-
 export default function MemoCreatingForm() {
   const [memoTitle, setMemoTitle] = useState<string>('')
   const [memoBody, setMemoBody] = useState<string>('')
+  const [selectValue, setSelectValue] = useState<string>('3')
 
-  const [values, setValues] = React.useState<State>({
-    amount: '',
-    password: '',
-    weight: '',
-    weightRange: '',
-    showPassword: false,
-  })
-
-  const handleChange =
-    (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
-      setValues({ ...values, [prop]: event.target.value })
-    }
+  // プルダウン選択イベント
+  const handleChange = (event: SelectChangeEvent) => {
+    setSelectValue(event.target.value)
+  }
 
   return (
     <Grid container spacing={4}>
@@ -63,7 +48,12 @@ export default function MemoCreatingForm() {
           保存期間 *
         </Typography>
         <FormControl>
-          <Select name='period' id='period' defaultValue={3}>
+          <Select
+            onChange={handleChange}
+            name='period'
+            id='period'
+            value={selectValue}
+          >
             {[1, 2, 3, 4, 5, 6, 7].map((v) => (
               <MenuItem value={v} key={v}>
                 {v}日
@@ -91,8 +81,6 @@ export default function MemoCreatingForm() {
           <Input
             id='standard-adornment-password'
             type='text'
-            value={values.password}
-            onChange={handleChange('password')}
             sx={{ fontSize: 20, fontFamily: 'monospace' }}
           />
         </FormControl>

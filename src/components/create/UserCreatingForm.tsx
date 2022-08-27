@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
-import Input from '@mui/material/Input'
 import InputLabel from '@mui/material/InputLabel'
 import Button from '@mui/material/Button'
 import Link from '@mui/material/Link'
@@ -9,52 +8,10 @@ import Box from '@mui/material/Box'
 import UserIdField from '../utils/UserIdField'
 import PasswordField from '../utils/PasswordField'
 
-interface State {
-  userName: string
-  password: string
-  checkPassword: string
-  showPassword: boolean
-  showCheckPassword: boolean
-}
-
 export default function UserCreatingForm() {
   const [userId, setUserId] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [checkPassword, setCheckPassword] = useState<string>('')
-
-  const [values, setValues] = React.useState<State>({
-    userName: '',
-    password: '',
-    checkPassword: '',
-    showPassword: false,
-    showCheckPassword: false,
-  })
-
-  const handleChange =
-    (prop: keyof State) =>
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setValues({ ...values, [prop]: event.target.value })
-    }
-
-  const handleClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
-    })
-  }
-
-  const handleClickCheckShowPassword = () => {
-    setValues({
-      ...values,
-      showCheckPassword: !values.showCheckPassword,
-    })
-  }
-
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault()
-  }
 
   return (
     <Grid
@@ -68,12 +25,7 @@ export default function UserCreatingForm() {
     >
       <Grid item xs={12}>
         <Box textAlign='right'>
-          <Link
-            href='/'
-            component='a'
-            underline='hover'
-            variant='subtitle2'
-          >
+          <Link href='/' component='a' underline='hover' variant='subtitle2'>
             既にユーザを作成されている方
           </Link>
         </Box>
