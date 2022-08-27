@@ -1,15 +1,17 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import InputLabel from '@mui/material/InputLabel'
 import Input from '@mui/material/Input'
-import TextareaAutosize from '@mui/material/TextareaAutosize'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import Checkbox from '@mui/material/Checkbox'
 import FormGroup from '@mui/material/FormGroup'
+import Box from '@mui/material/Box'
 import FormControlLabel from '@mui/material/FormControlLabel'
+import MemoTitleField from '../utils/MemoTitleField'
+import MemoEditArea from '../utils/MemoEditArea'
 
 interface State {
   amount: string
@@ -20,6 +22,9 @@ interface State {
 }
 
 export default function MemoCreatingForm() {
+  const [memoTitle, setMemoTitle] = useState<string>('')
+  const [memoBody, setMemoBody] = useState<string>('')
+
   const [values, setValues] = React.useState<State>({
     amount: '',
     password: '',
@@ -29,8 +34,7 @@ export default function MemoCreatingForm() {
   })
 
   const handleChange =
-    (prop: keyof State) =>
-    (event: React.ChangeEvent<HTMLInputElement>) => {
+    (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
       setValues({ ...values, [prop]: event.target.value })
     }
 
@@ -40,42 +44,19 @@ export default function MemoCreatingForm() {
         <Typography variant='h6' gutterBottom>
           タイトル *
         </Typography>
-        <FormControl
-          sx={{ margin: 1, width: '60%' }}
-          variant='standard'
-        >
-          <InputLabel htmlFor='standard-adornment-password'>
-            UserName
-          </InputLabel>
-          <Input
-            id='standard-adornment-password'
-            type='text'
-            value={values.password}
-            onChange={handleChange('password')}
-            sx={{ fontSize: 20, fontFamily: 'monospace' }}
+        <Box sx={{ width: '50%' }}>
+          <MemoTitleField
+            text={memoTitle}
+            setText={setMemoTitle}
+            id={'memo-title'}
           />
-        </FormControl>
+        </Box>
       </Grid>
       <Grid item xs={12}>
         <Typography variant='h6' gutterBottom>
           メモ *
         </Typography>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <TextareaAutosize
-              required
-              id='memo-body'
-              minRows={10}
-              name='body'
-              style={{
-                width: '100%',
-                padding: 10,
-                fontSize: 20,
-                fontFamily: 'monospace',
-              }}
-            />
-          </Grid>
-        </Grid>
+        <MemoEditArea text={memoBody} setText={setMemoBody} id={'memo-body'} />
       </Grid>
       <Grid item xs={12}>
         <Typography variant='h6' gutterBottom>
@@ -103,10 +84,7 @@ export default function MemoCreatingForm() {
         <Typography variant='h6' gutterBottom>
           合言葉 *
         </Typography>
-        <FormControl
-          sx={{ margin: 1, width: '100%' }}
-          variant='standard'
-        >
+        <FormControl sx={{ margin: 1, width: '100%' }} variant='standard'>
           <InputLabel htmlFor='standard-adornment-password'>
             Aikotoba
           </InputLabel>

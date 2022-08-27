@@ -2,12 +2,14 @@ import React from 'react'
 import UserIdField from '../components/utils/UserIdField'
 import PasswordField from '../components/utils/PasswordField'
 import MemoEditArea from '../components/utils/MemoEditArea'
+import MemoTitleField from '../components/utils/MemoTitleField'
 import Typography from '@mui/material/Typography'
 
 const Wrapper = () => {
   const [text, setText] = React.useState<string>('')
   const [text2, setText2] = React.useState<string>('')
   const [text3, setText3] = React.useState<string>('')
+  const [text4, setText4] = React.useState<string>('')
   return (
     <>
       <UserIdField
@@ -33,13 +35,23 @@ const Wrapper = () => {
       <Typography sx={{ backgroundColor: 'lightgrey' }}>
         {text2}
       </Typography>
-      <MemoEditArea
+
+      <MemoTitleField
         id={'custom-input-form'}
         text={text3}
         setText={setText3}
       />
       <Typography sx={{ backgroundColor: 'lightgrey' }}>
         {text3}
+      </Typography>
+
+      <MemoEditArea
+        id={'custom-input-form'}
+        text={text4}
+        setText={setText4}
+      />
+      <Typography sx={{ backgroundColor: 'lightgrey' }}>
+        {text4}
       </Typography>
     </>
   )

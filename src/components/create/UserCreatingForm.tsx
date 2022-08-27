@@ -3,11 +3,6 @@ import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
 import Input from '@mui/material/Input'
 import InputLabel from '@mui/material/InputLabel'
-import InputAdornment from '@mui/material/InputAdornment'
-import IconButton from '@mui/material/IconButton'
-import FormControl from '@mui/material/FormControl'
-import Visibility from '@mui/icons-material/Visibility'
-import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import Button from '@mui/material/Button'
 import Link from '@mui/material/Link'
 import Box from '@mui/material/Box'
@@ -23,11 +18,8 @@ interface State {
 }
 
 export default function UserCreatingForm() {
-  //　ユーザID
   const [userId, setUserId] = useState<string>('')
-  // 本パスワード
   const [password, setPassword] = useState<string>('')
-  // 確認用パスワード
   const [checkPassword, setCheckPassword] = useState<string>('')
 
   const [values, setValues] = React.useState<State>({
