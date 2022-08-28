@@ -1,22 +1,26 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
-import InputLabel from '@mui/material/InputLabel'
-import Input from '@mui/material/Input'
 import FormControl from '@mui/material/FormControl'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
-import Checkbox from '@mui/material/Checkbox'
-import FormGroup from '@mui/material/FormGroup'
 import Box from '@mui/material/Box'
-import FormControlLabel from '@mui/material/FormControlLabel'
 import MemoTitleField from '../utils/MemoTitleField'
 import MemoEditArea from '../utils/MemoEditArea'
+import AikotobaEditForm from '../utils/AikotobaEditForm'
 
 export default function MemoCreatingForm() {
   const [memoTitle, setMemoTitle] = useState<string>('')
   const [memoBody, setMemoBody] = useState<string>('')
-  const [selectValue, setSelectValue] = useState<string>('3')
+  const [selectValue, setSelectValue] = useState<string>('')
+  const [isShare, setIsShare] = useState<boolean>(false)
+  const [aikotoba, setAikotoba] = useState<string>('')
+  const [checkAikotoba, setCheckAikotoba] = useState<string>('')
+
+  useEffect(() => {
+    // セレクトの初期値は ３日 とする
+    setSelectValue('3')
+  }, [])
 
   // プルダウン選択イベント
   const handleChange = (event: SelectChangeEvent) => {
@@ -62,28 +66,20 @@ export default function MemoCreatingForm() {
           </Select>
         </FormControl>
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={12}>
         <Typography variant='h6' gutterBottom>
           メモの共有
         </Typography>
-        <FormGroup>
-          <FormControlLabel control={<Checkbox />} label='許可する' />
-        </FormGroup>
-      </Grid>
-      <Grid item xs={5}>
-        <Typography variant='h6' gutterBottom>
-          合言葉 *
-        </Typography>
-        <FormControl sx={{ margin: 1, width: '100%' }} variant='standard'>
-          <InputLabel htmlFor='standard-adornment-password'>
-            Aikotoba
-          </InputLabel>
-          <Input
-            id='standard-adornment-password'
-            type='text'
-            sx={{ fontSize: 20, fontFamily: 'monospace' }}
+        <Box sx={{ width: '100%' }}>
+          <AikotobaEditForm
+            isShare={isShare}
+            setIsShare={setIsShare}
+            aikotoba={aikotoba}
+            setAikotoba={setAikotoba}
+            checkAikotoba={checkAikotoba}
+            setCheckAikotoba={setCheckAikotoba}
           />
-        </FormControl>
+        </Box>
       </Grid>
     </Grid>
   )

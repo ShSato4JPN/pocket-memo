@@ -33,8 +33,8 @@ export default function UserCreatingForm() {
       <Grid item xs={12}>
         <Box
           sx={{
-            paddingLeft: 10,
-            paddingRight: 10,
+            paddingLeft: 8,
+            paddingRight: 8,
           }}
         >
           <Typography variant='h6' gutterBottom>
@@ -53,8 +53,8 @@ export default function UserCreatingForm() {
       <Grid item xs={12}>
         <Box
           sx={{
-            paddingLeft: 10,
-            paddingRight: 10,
+            paddingLeft: 8,
+            paddingRight: 8,
           }}
         >
           <Typography variant='h6' gutterBottom>
@@ -76,8 +76,8 @@ export default function UserCreatingForm() {
       <Grid item xs={12}>
         <Box
           sx={{
-            paddingLeft: 10,
-            paddingRight: 10,
+            paddingLeft: 8,
+            paddingRight: 8,
           }}
         >
           <Typography variant='h6' gutterBottom>
