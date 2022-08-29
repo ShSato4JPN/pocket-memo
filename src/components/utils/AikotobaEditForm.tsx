@@ -6,6 +6,7 @@ import FormGroup from '@mui/material/FormGroup'
 import Fade from '@mui/material/Fade'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import AikotobaEdit from './AikotobaEdit'
+import { width } from '@mui/system'
 
 interface Props {
   isShare: boolean
@@ -39,28 +40,32 @@ const AikotobaEditForm: React.FC<Props> = (props) => {
                 <Typography sx={{ marginBottom: 2 }}>
                   他の人にメモを共有する際に使用するあいことば（パスワード）を入力してください。
                 </Typography>
-                <Typography variant='h6' gutterBottom>
-                  あいことば *
-                </Typography>
-                <AikotobaEdit
-                  id={'aikotoba'}
-                  text={props.aikotoba}
-                  setText={props.setAikotoba}
-                  label={'あいことば'}
-                  min={8}
-                  max={20}
-                />
-                <Typography variant='h6' gutterBottom>
-                  あいことば（確認用） *
-                </Typography>
-                <AikotobaEdit
-                  id={'check-aikotobae'}
-                  text={props.checkAikotoba}
-                  setText={props.setCheckAikotoba}
-                  label={'あいことば (確認用)'}
-                  min={8}
-                  max={20}
-                />
+                <Box component={'div'} sx={{ width: '50%', marginBottom: 2 }}>
+                  <Typography variant='h6' gutterBottom>
+                    あいことば *
+                  </Typography>
+                  <AikotobaEdit
+                    id={'aikotoba'}
+                    text={props.aikotoba}
+                    setText={props.setAikotoba}
+                    label={'あいことば'}
+                    min={8}
+                    max={20}
+                  />
+                </Box>
+                <Box component={'div'} sx={{ width: '50%' }}>
+                  <Typography variant='h6' gutterBottom>
+                    あいことば（確認用） *
+                  </Typography>
+                  <AikotobaEdit
+                    id={'check-aikotobae'}
+                    text={props.checkAikotoba}
+                    setText={props.setCheckAikotoba}
+                    label={'あいことば (確認用)'}
+                    min={8}
+                    max={20}
+                  />
+                </Box>
               </Box>
             }
           </Fade>

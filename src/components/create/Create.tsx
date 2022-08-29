@@ -8,34 +8,42 @@ import Step from '@mui/material/Step'
 import StepLabel from '@mui/material/StepLabel'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
-import {
-  createTheme,
-  ThemeProvider,
-} from '@mui/material/styles'
-import MemoCreatingForm from './MemoCreatingForm'
-import UserCreatingForm from './UserCreatingForm'
-import TermsForm from './TermsForm'
+import CreatMemo from './CreatMemo'
+import CreateUser from './CreateUser'
+import CreateMemoOption from './CreateMemoOption'
 import CustomAppBar from '../CustomAppBar'
+import Dialog from '@mui/material/Dialog'
+import DialogActions from '@mui/material/DialogActions'
+import DialogContent from '@mui/material/DialogContent'
+import DialogContentText from '@mui/material/DialogContentText'
+import DialogTitle from '@mui/material/DialogTitle'
 
-const steps = ['ユーザを作成', 'メモを作成', '規約の確認']
+const steps = ['ユーザを作成', 'メモを作成', 'メモの設定']
 
 function getStepContent(step: number) {
   switch (step) {
     case 0:
-      return <UserCreatingForm />
+      return <CreateUser />
     case 1:
-      return <MemoCreatingForm />
+      return <CreatMemo />
     case 2:
-      return <TermsForm />
+      return <CreateMemoOption />
     default:
       throw new Error('Unknown step')
   }
 }
 
-const theme = createTheme()
-
 export default function Create() {
   const [activeStep, setActiveStep] = React.useState(0)
+  const [open, setOpen] = React.useState(false)
+
+  const handleOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
 
   const handleNext = () => {
     setActiveStep(activeStep + 1)
@@ -46,70 +54,75 @@ export default function Create() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
+    <Box component={'div'}>
       <CssBaseline />
       <CustomAppBar />
-      <Container
-        component='main'
-        maxWidth='md'
-        sx={{ mb: 4 }}
-      >
+      <Container component='main' maxWidth='md' sx={{ mb: 4 }}>
         <Paper
           variant='outlined'
           sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }} // my : margin-top and margin-bottom2
         >
-          <Typography
-            component='h1'
-            variant='h4'
-            align='center'
-          >
+          <Typography component='h1' variant='h4' align='center'>
             メモを作ろう！
           </Typography>
-          <Stepper
-            activeStep={activeStep}
-            sx={{ pt: 3, pb: 5 }}
-          >
+          <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (
               <Step key={label}>
                 <StepLabel>{label}</StepLabel>
               </Step>
             ))}
           </Stepper>
-          <>
-            {activeStep === steps.length ? (
-              <></>
-            ) : (
-              <>
-                {getStepContent(activeStep)}
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'flex-end',
-                  }}
-                >
-                  {activeStep !== 0 && (
-                    <Button
-                      onClick={handleBack}
-                      sx={{ mt: 3, ml: 1 }}
-                    >
-                      戻る
-                    </Button>
-                  )}
-                  <Button
-                    variant='contained'
-                    onClick={handleNext}
-                    sx={{ mt: 3, ml: 1 }}
-                  >
-                    {activeStep === steps.length - 1
-                      ? '保存'
-                      : '次へ'}
+          <Box component={'div'}>
+            <Box component={'div'}>
+              {getStepContent(activeStep)}
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'flex-end',
+                }}
+              >
+                {activeStep !== 0 && (
+                  <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
+                    戻る
                   </Button>
-                </Box>
-              </>
-            )}
-          </>
+                )}
+                <Button
+                  variant='contained'
+                  onClick={
+                    activeStep === steps.length - 1 ? handleOpen : handleNext
+                  }
+                  sx={{ mt: 3, ml: 1 }}
+                >
+                  {activeStep === steps.length - 1 ? '作成' : '次へ'}
+                </Button>
+              </Box>
+            </Box>
+          </Box>
         </Paper>
       </Container>
-    </ThemeProvider>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby='alert-dialog-title'
+        aria-describedby='alert-dialog-description'
+      >
+        <DialogTitle id='create-memo-dialog'>
+          {'メモを作成しますか？'}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id='alert-dialog-description'>
+            メモが第三者に盗聴されたとしても本サイトは責任を取る事ができません。
+            <br />
+            同意いただける方のみ本サービスをご利用ください。
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>いいえ</Button>
+          <Button onClick={handleClose} autoFocus>
+            はい
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </Box>
   )
 }

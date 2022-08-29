@@ -9,7 +9,7 @@ import MemoTitleField from '../utils/MemoTitleField'
 import MemoEditArea from '../utils/MemoEditArea'
 import AikotobaEditForm from '../utils/AikotobaEditForm'
 
-export default function MemoCreatingForm() {
+export default function CreatMemo() {
   const [memoTitle, setMemoTitle] = useState<string>('')
   const [memoBody, setMemoBody] = useState<string>('')
   const [selectValue, setSelectValue] = useState<string>('')
@@ -46,40 +46,6 @@ export default function MemoCreatingForm() {
           メモ *
         </Typography>
         <MemoEditArea text={memoBody} setText={setMemoBody} id={'memo-body'} />
-      </Grid>
-      <Grid item xs={12}>
-        <Typography variant='h6' gutterBottom>
-          保存期間 *
-        </Typography>
-        <FormControl>
-          <Select
-            onChange={handleChange}
-            name='period'
-            id='period'
-            value={selectValue}
-          >
-            {[1, 2, 3, 4, 5, 6, 7].map((v) => (
-              <MenuItem value={v} key={v}>
-                {v}日
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </Grid>
-      <Grid item xs={12}>
-        <Typography variant='h6' gutterBottom>
-          メモの共有
-        </Typography>
-        <Box sx={{ width: '100%' }}>
-          <AikotobaEditForm
-            isShare={isShare}
-            setIsShare={setIsShare}
-            aikotoba={aikotoba}
-            setAikotoba={setAikotoba}
-            checkAikotoba={checkAikotoba}
-            setCheckAikotoba={setCheckAikotoba}
-          />
-        </Box>
       </Grid>
     </Grid>
   )
