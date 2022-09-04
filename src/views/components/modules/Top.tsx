@@ -1,21 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
-import AppTheme from '../../../styles/theme/AppTheme'
 import { ThemeProvider, styled } from '@mui/material/styles'
-import { green, red } from '@mui/material/colors'
+import { green } from '@mui/material/colors'
+import AppTheme from '../../../styles/theme/AppTheme'
+import LoginModal from './LoginModal'
 
-const StyledButton = styled(Button)({
+const MemoCreateButton = styled(Button)({
   fontSize: 17,
-  margin: 20,
+  marginTop: 20,
   '&:hover': {
     backgroundColor: green[400],
   },
 })
 
+const UserCreateButton = styled(Button)({
+  fontSize: 17,
+  marginTop: 20,
+})
+
 const Top: React.FC = () => {
+  const [dialogOpen, setDialogOpen] = useState<boolean>(false)
+
+  const handleClick = () => {
+    setDialogOpen(true)
+  }
+
   return (
     <ThemeProvider theme={AppTheme}>
       <Box>
@@ -60,8 +72,13 @@ const Top: React.FC = () => {
               alignItems: 'center',
             }}
           >
-            <StyledButton variant='contained'>ログイン</StyledButton>
-            <Button>ユーザを作成する</Button>
+            <MemoCreateButton
+              variant='contained'
+              onClick={handleClick}
+            >
+              メモる
+            </MemoCreateButton>
+            <UserCreateButton>ユーザを作成する</UserCreateButton>
           </Grid>
           <Grid item xs={12}>
             <Typography
@@ -77,6 +94,7 @@ const Top: React.FC = () => {
           </Grid>
         </Grid>
       </Box>
+      <LoginModal open={dialogOpen} setOpen={setDialogOpen} />
     </ThemeProvider>
   )
 }

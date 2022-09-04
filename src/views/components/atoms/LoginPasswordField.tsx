@@ -39,16 +39,7 @@ const LoginPasswordField: React.FC<Props> = (props) => {
   }
 
   return (
-    <FormControl
-      variant='standard'
-      fullWidth
-      sx={{
-        '&:hover': {
-          backgroundColor: 'pink',
-          borderBottomColor: 'red',
-        },
-      }}
-    >
+    <FormControl variant='standard' fullWidth>
       <InputLabel>パスワード</InputLabel>
       <Input
         type={showText ? 'text' : 'password'}

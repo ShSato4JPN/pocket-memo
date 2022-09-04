@@ -7,6 +7,9 @@ const AppTheme = createTheme({
       main: green[500],
       contrastText: grey[200],
     },
+    text: {
+      primary: grey[700],
+    },
   },
 })
 
