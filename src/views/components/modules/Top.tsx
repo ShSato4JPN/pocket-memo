@@ -77,29 +77,6 @@ const Top: React.FC = () => {
           </Grid>
         </Grid>
       </Box>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby='alert-dialog-title'
-        aria-describedby='alert-dialog-description'
-      >
-        <DialogTitle id='create-memo-dialog'>
-          {'メモを作成しますか？'}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id='alert-dialog-description'>
-            メモが第三者に盗聴されたとしても本サイトは責任を取る事ができません。
-            <br />
-            同意いただける方のみ本サービスをご利用ください。
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>いいえ</Button>
-          <Button onClick={handleClose} autoFocus>
-            はい
-          </Button>
-        </DialogActions>
-      </Dialog>
     </ThemeProvider>
   )
 }

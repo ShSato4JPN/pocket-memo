@@ -6,12 +6,10 @@ import Box from '@mui/material/Box'
 import FormHelperText from '@mui/material/FormHelperText'
 
 interface Props {
-  text: string
-  setText: React.Dispatch<React.SetStateAction<string>>
+  setUserId: React.Dispatch<React.SetStateAction<string>>
   label: string
   min: number
   max: number
-  id: string
 }
 
 const UserIdField: React.FC<Props> = (props) => {
@@ -21,6 +19,8 @@ const UserIdField: React.FC<Props> = (props) => {
   const [isOk, setIsOk] = useState<boolean>(false)
   // 入力文字数カウント用
   const [count, setCount] = useState<number>(0)
+  // 入力文字
+  const [text, setText] = useState<string>('')
   // InputLabel の表示/非表示
   const [visible, setVisible] = useState<boolean>(false)
 
@@ -42,14 +42,11 @@ const UserIdField: React.FC<Props> = (props) => {
     let inputText = event.target.value
     // 入力制限チェック
     if (inputText.length <= props.max) {
-      props.setText(inputText)
+      props.setUserId(inputText)
       setCount(inputText.length)
     }
     // OK メッセージ表示チェック
-    if (
-      props.min <= props.text.length &&
-      isMatchWithPattern(inputText)
-    ) {
+    if (props.min <= text.length && isMatchWithPattern(inputText)) {
       setIsOk(true)
     } else {
       setIsOk(false)
@@ -62,7 +59,7 @@ const UserIdField: React.FC<Props> = (props) => {
   //　フォーカスアウト
   const handleBlur = () => {
     setVisible(false)
-    setIsError(!isMatchWithPattern(props.text))
+    setIsError(!isMatchWithPattern(text))
   }
   //　パターンマッチ
   const isMatchWithPattern = (text: string) => {
@@ -77,7 +74,7 @@ const UserIdField: React.FC<Props> = (props) => {
       }}
     >
       <FormControl sx={{ width: '100%' }} variant='standard'>
-        <InputLabel htmlFor={props.id}>
+        <InputLabel>
           {props.label}
           {visible
             ? _limitFormat +
@@ -85,9 +82,8 @@ const UserIdField: React.FC<Props> = (props) => {
             : ''}
         </InputLabel>
         <Input
-          id={props.id}
           type='text'
-          value={props.text}
+          value={text}
           onChange={handleChange}
           onFocus={handleFocusIn}
           onBlur={handleBlur}

@@ -39,7 +39,12 @@ export default function CreateUser() {
     >
       <Grid item xs={12}>
         <Box textAlign='right'>
-          <Link href='/' component='a' underline='hover' variant='subtitle2'>
+          <Link
+            href='/'
+            component='a'
+            underline='hover'
+            variant='subtitle2'
+          >
             既にユーザを作成されている方
           </Link>
         </Box>

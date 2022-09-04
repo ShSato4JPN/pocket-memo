@@ -10,13 +10,20 @@ export default {
 
 const Template: ComponentStory<typeof LoginModal> = (args) => {
   const [open, setOpen] = React.useState<boolean>(false)
+  const [userId, setUserId] = React.useState<string>('')
+  const [userPassword, setUserPassword] = React.useState<string>('')
   const handleClick = () => {
     setOpen(true)
   }
   return (
     <>
       <Button onClick={handleClick}>show dialog</Button>
-      <LoginModal open={open} setOpen={setOpen} />
+      <LoginModal
+        open={open}
+        setOpen={setOpen}
+        setUserId={setUserId}
+        setUserPassword={setUserPassword}
+      />
     </>
   )
 }
