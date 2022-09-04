@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import { ThemeProvider, styled } from '@mui/material/styles'
 import { green } from '@mui/material/colors'
+import Link from '@mui/material/Link'
 import AppTheme from '../../../styles/theme/AppTheme'
 import LoginModal from './LoginModal'
 

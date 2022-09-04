@@ -38,8 +38,8 @@ const LoginUserIdForm: React.FC = () => {
             alt='Site Logo'
             src='/assets/images/sample.png'
             sx={{
-              maxHeight: { xs: 300 },
-              maxWidth: { xs: 300 },
+              maxHeight: { xs: 100 },
+              maxWidth: { xs: 100 },
             }}
           />
         </Grid>
