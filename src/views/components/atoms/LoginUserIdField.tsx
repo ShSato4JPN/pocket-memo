@@ -4,7 +4,6 @@ import InputLabel from '@mui/material/InputLabel'
 import Input from '@mui/material/Input'
 import { ThemeProvider } from '@emotion/react'
 import AppTheme from '../../../styles/theme/AppTheme'
-import { styled } from '@mui/material/styles'
 
 interface Props {
   setUserId: React.Dispatch<React.SetStateAction<string>>

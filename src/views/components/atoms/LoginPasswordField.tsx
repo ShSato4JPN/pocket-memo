@@ -13,26 +13,16 @@ interface Props {
 
 const LoginPasswordField: React.FC<Props> = (props) => {
   const [text, setText] = useState<string>('')
-  // input の text， passoword　を切り替える
   const [showText, setShowText] = useState<boolean>(false)
 
-  // キー入力イベント
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setText(event.target.value)
   }
-  // 表示アイコンクリック（パスワード表示/非表示）
   const handleClickShowPassword = () => {
     setShowText(!showText)
   }
-  // フォーム送信処理キャンセル
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault()
-  }
-  //　フォーカスアウト
   const handleBlur = () => {
     setShowText(false)
     props.setPassword(text)
@@ -55,7 +45,6 @@ const LoginPasswordField: React.FC<Props> = (props) => {
             <IconButton
               aria-label='toggle password visibility'
               onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
             >
               {showText ? <VisibilityOff /> : <Visibility />}
             </IconButton>
