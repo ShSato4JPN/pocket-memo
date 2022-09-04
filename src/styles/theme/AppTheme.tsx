@@ -1,25 +1,13 @@
-import {
-  Box,
-  ThemeProvider,
-  createTheme,
-} from '@mui/system'
+import { createTheme } from '@mui/material/styles'
+import { green, grey } from '@mui/material/colors'
 
-const theme = createTheme({
+const AppTheme = createTheme({
   palette: {
-    background: {
-      paper: 'orange',
-    },
-    text: {
-      primary: 'tomato',
-      secondary: 'lightgreen',
-    },
-    action: {
-      active: '#001E3C',
-    },
-    success: {
-      dark: '#009688',
+    primary: {
+      main: green[500],
+      contrastText: grey[200],
     },
   },
 })
 
-export default theme
+export default AppTheme

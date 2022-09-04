@@ -89,7 +89,9 @@ export default function Create() {
                 <Button
                   variant='contained'
                   onClick={
-                    activeStep === steps.length - 1 ? handleOpen : handleNext
+                    activeStep === steps.length - 1
+                      ? handleOpen
+                      : handleNext
                   }
                   sx={{ mt: 3, ml: 1 }}
                 >

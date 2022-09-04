@@ -14,19 +14,15 @@ import AdbIcon from '@mui/icons-material/Adb'
 const pages = ['PocketMemoとは', '使い方', '作った人']
 
 const CustomAppBar = () => {
-  const [anchorElNav, setAnchorElNav] =
-    React.useState<null | HTMLElement>(null)
-  const [anchorElUser, setAnchorElUser] =
-    React.useState<null | HTMLElement>(null)
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
+  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
+    null
+  )
 
-  const handleOpenNavMenu = (
-    event: React.MouseEvent<HTMLElement>
-  ) => {
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget)
   }
-  const handleOpenUserMenu = (
-    event: React.MouseEvent<HTMLElement>
-  ) => {
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget)
   }
 
@@ -101,13 +97,8 @@ const CustomAppBar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                >
-                  <Typography textAlign='center'>
-                    {page}
-                  </Typography>
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography textAlign='center'>{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
