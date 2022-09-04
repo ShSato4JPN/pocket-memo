@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import { ThemeProvider, styled } from '@mui/material/styles'
 import { green } from '@mui/material/colors'
-import { Router } from 'next/router'
+import { useRouter } from 'next/router'
 import AppTheme from '../../../styles/theme/AppTheme'
 import LoginModal from './LoginModal'
 
@@ -23,10 +23,18 @@ const UserCreateButton = styled(Button)({
 })
 
 const Top: React.FC = () => {
+  const router = useRouter()
+
   const [dialogOpen, setDialogOpen] = useState<boolean>(false)
 
-  const handleClick = () => {
+  const handleMemoCreateClick = () => {
     setDialogOpen(true)
+  }
+
+  const handleUserCreateClick = (
+    event: React.MouseEventHandler<HTMLButtonElement>
+  ) => {
+    router.push('/create/user')
   }
 
   return (
@@ -75,11 +83,13 @@ const Top: React.FC = () => {
           >
             <MemoCreateButton
               variant='contained'
-              onClick={handleClick}
+              onClick={handleMemoCreateClick}
             >
               メモる
             </MemoCreateButton>
-            <UserCreateButton>ユーザを作成する</UserCreateButton>
+            <UserCreateButton onClick={handleUserCreateClick}>
+              ユーザを作成する
+            </UserCreateButton>
           </Grid>
           <Grid item xs={12}>
             <Typography

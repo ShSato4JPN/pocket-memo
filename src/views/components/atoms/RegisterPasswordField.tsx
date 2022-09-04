@@ -42,7 +42,9 @@ const PasswordField: React.FC<Props> = (props) => {
   const _validNoMessage = '　　入力条件を満たしていません🥺'
 
   // キー入力イベント
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     let inputText = event.target.value
     // 入力制限チェック
     if (inputText.length <= props.max) {
@@ -95,7 +97,8 @@ const PasswordField: React.FC<Props> = (props) => {
         <InputLabel htmlFor={props.id}>
           {props.label}
           {visible
-            ? _limitFormat + (isOk ? _validOkMessage : _validNoMessage)
+            ? _limitFormat +
+              (isOk ? _validOkMessage : _validNoMessage)
             : ''}
         </InputLabel>
         <Input
