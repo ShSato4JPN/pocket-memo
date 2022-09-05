@@ -12,7 +12,7 @@ interface Props {
   max: number
 }
 
-const UserIdField: React.FC<Props> = (props) => {
+const RegisterUserIdField: React.FC<Props> = (props) => {
   // 入力フォームのエラーチェック用
   const [isError, setIsError] = useState<boolean>(false)
   // 入力フォームのエラーチェック用
@@ -101,4 +101,4 @@ const UserIdField: React.FC<Props> = (props) => {
   )
 }
 
-export default UserIdField
+export default RegisterUserIdField

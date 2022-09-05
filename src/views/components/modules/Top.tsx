@@ -31,9 +31,7 @@ const Top: React.FC = () => {
     setDialogOpen(true)
   }
 
-  const handleUserCreateClick = (
-    event: React.MouseEventHandler<HTMLButtonElement>
-  ) => {
+  const handleUserCreateClick = () => {
     router.push('/create/user')
   }
 

@@ -10,15 +10,13 @@ import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 
 interface Props {
-  text: string
-  setText: React.Dispatch<React.SetStateAction<string>>
+  setPasword: React.Dispatch<React.SetStateAction<string>>
   label: string
   min: number
   max: number
-  id: string
 }
 
-const PasswordField: React.FC<Props> = (props) => {
+const RegisterPasswordField: React.FC<Props> = (props) => {
   // 入力フォームのエラーチェック用
   const [isError, setIsError] = useState<boolean>(false)
   // 入力フォームのエラーチェック用
@@ -29,6 +27,8 @@ const PasswordField: React.FC<Props> = (props) => {
   const [visible, setVisible] = useState<boolean>(false)
   // input の text， passoword　を切り替える
   const [showText, setShowText] = useState<boolean>(false)
+  // 入力文字
+  const [text, setText] = useState<string>('')
 
   // 半角スペースだと最適化されるため、全角スペースで調整する
   const _limitFormat = `　　${count} / ${props.max}`
@@ -48,14 +48,11 @@ const PasswordField: React.FC<Props> = (props) => {
     let inputText = event.target.value
     // 入力制限チェック
     if (inputText.length <= props.max) {
-      props.setText(inputText)
+      setText(inputText)
       setCount(inputText.length)
     }
     // OK メッセージ表示チェック
-    if (
-      props.min <= props.text.length &&
-      isMatchWithPattern(inputText)
-    ) {
+    if (props.min <= text.length && isMatchWithPattern(inputText)) {
       setIsOk(true)
     } else {
       setIsOk(false)
@@ -79,8 +76,26 @@ const PasswordField: React.FC<Props> = (props) => {
   const handleBlur = () => {
     setShowText(false)
     setVisible(false)
-    setIsError(!isMatchWithPattern(props.text))
+    if (isValidation()) {
+      props.setPasword(text)
+      setIsError(true)
+    } else {
+      setIsError(false)
+    }
   }
+  //　バリデーションチェック
+  const isValidation = () => {
+    // 入力文字チェック
+    if (!isMatchWithPattern) {
+      return false
+    }
+    // 入力文字数チェック
+    if (text.length < props.min) {
+      return false
+    }
+    return true
+  }
+
   //　パターンマッチ
   const isMatchWithPattern = (text: string) => {
     const regex = new RegExp(_pattern)
@@ -94,7 +109,7 @@ const PasswordField: React.FC<Props> = (props) => {
       }}
     >
       <FormControl sx={{ width: '100%' }} variant='standard'>
-        <InputLabel htmlFor={props.id}>
+        <InputLabel>
           {props.label}
           {visible
             ? _limitFormat +
@@ -102,9 +117,8 @@ const PasswordField: React.FC<Props> = (props) => {
             : ''}
         </InputLabel>
         <Input
-          id={props.id}
           type={showText ? 'text' : 'password'}
-          value={props.text}
+          value={text}
           onFocus={handleFocusIn}
           onBlur={handleBlur}
           onChange={handleChange}
@@ -133,4 +147,4 @@ const PasswordField: React.FC<Props> = (props) => {
   )
 }
 
-export default PasswordField
+export default RegisterPasswordField
