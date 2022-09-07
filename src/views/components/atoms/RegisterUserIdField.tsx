@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import Input from '@mui/material/Input'
@@ -15,14 +15,12 @@ interface Props {
 const RegisterUserIdField: React.FC<Props> = (props) => {
   // 入力フォームのエラーチェック用
   const [isError, setIsError] = useState<boolean>(false)
-  // 入力フォームのエラーチェック用
-  const [isOk, setIsOk] = useState<boolean>(false)
   // 入力文字数カウント用
   const [count, setCount] = useState<number>(0)
   // 入力文字
   const [text, setText] = useState<string>('')
   // InputLabel の表示/非表示
-  const [visible, setVisible] = useState<boolean>(false)
+  const [isLabelVisible, setIsLabelVisible] = useState<boolean>(false)
 
   // 半角スペースだと最適化されるため、全角スペースで調整する
   const _limitFormat = `　　${count} / ${props.max}`
@@ -31,9 +29,9 @@ const RegisterUserIdField: React.FC<Props> = (props) => {
   //　半角英小文字大文字数字をそれぞれ1種類以上含む min 文字以上 max 文字以下
   const _pattern = `^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\\d)(?=.*?[!-\\/:-@[-\`{-~])[!-~()]{${props.min},${props.max}}\$`
   // 項目チェック OK メッセージ
-  const _validOkMessage = '　　問題ありません👍'
+  const _validOkMessage = '　　Good 👍'
   // 項目チェック NG メッセージ
-  const _validNoMessage = '　　入力条件を満たしていません🥺'
+  const _validNoMessage = '　　No 👎'
 
   // キー入力イベント
   const handleChange = (
@@ -42,24 +40,45 @@ const RegisterUserIdField: React.FC<Props> = (props) => {
     let inputText = event.target.value
     // 入力制限チェック
     if (inputText.length <= props.max) {
-      props.setUserId(inputText)
+      setText(inputText)
       setCount(inputText.length)
     }
     // OK メッセージ表示チェック
-    if (props.min <= text.length && isMatchWithPattern(inputText)) {
-      setIsOk(true)
+    if (isMatchWithPattern(inputText)) {
+      setIsError(false)
     } else {
-      setIsOk(false)
+      setIsError(true)
     }
   }
   // フォーカスイン
   const handleFocusIn = () => {
-    setVisible(true)
+    setIsError(!isValidation())
+    setIsLabelVisible(true)
   }
   //　フォーカスアウト
   const handleBlur = () => {
-    setVisible(false)
-    setIsError(!isMatchWithPattern(text))
+    setIsLabelVisible(false)
+    if (isValidation()) {
+      props.setUserId(text)
+      setIsError(false)
+    } else {
+      // エラーの場合は state　を初期化する
+      props.setUserId('')
+      setIsError(true)
+    }
+  }
+  //　バリデーションチェック
+  const isValidation = () => {
+    // 入力文字チェック
+    if (!isMatchWithPattern(text)) {
+      return false
+    }
+    // 入力文字数チェック
+    if (text.length < props.min) {
+      return false
+    }
+
+    return true
   }
   //　パターンマッチ
   const isMatchWithPattern = (text: string) => {
@@ -76,9 +95,9 @@ const RegisterUserIdField: React.FC<Props> = (props) => {
       <FormControl sx={{ width: '100%' }} variant='standard'>
         <InputLabel>
           {props.label}
-          {visible
+          {isLabelVisible
             ? _limitFormat +
-              (isOk ? _validOkMessage : _validNoMessage)
+              (isError ? _validNoMessage : _validOkMessage)
             : ''}
         </InputLabel>
         <Input

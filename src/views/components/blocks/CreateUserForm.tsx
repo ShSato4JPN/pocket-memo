@@ -19,6 +19,7 @@ const StyledButton = styled(Button)({
 const CreateUserForm: React.FC = () => {
   const [userId, setUserId] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const [rePassword, setRePassword] = useState<string>('')
 
   return (
     <ThemeProvider theme={AppTheme}>
@@ -42,14 +43,32 @@ const CreateUserForm: React.FC = () => {
             }}
           />
         </Grid>
-        <Grid item xs={12} width={350} sx={{ padding: 2 }}>
-          <LoginUserIdField setUserId={setUserId} />
+        <Grid item xs={12} width={350}>
+          <RegisterUserIdField
+            label={'ユーザーID'}
+            min={8}
+            max={15}
+            setUserId={setUserId}
+          />
         </Grid>
         <Grid item xs={12} width={350}>
-          <LoginPasswordField setPassword={setPassword} />
+          <RegisterPasswordField
+            label={'パスワード'}
+            min={8}
+            max={20}
+            setPassword={setPassword}
+          />
+        </Grid>
+        <Grid item xs={12} width={350}>
+          <RegisterPasswordField
+            label={'パスワード（確認用）'}
+            min={8}
+            max={20}
+            setPassword={setRePassword}
+          />
         </Grid>
         <Grid item xs={12}>
-          <StyledButton variant='contained'>続ける</StyledButton>
+          <StyledButton variant='contained'>作成</StyledButton>
         </Grid>
       </Grid>
     </ThemeProvider>

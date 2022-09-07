@@ -10,7 +10,7 @@ import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 
 interface Props {
-  setPasword: React.Dispatch<React.SetStateAction<string>>
+  setPassword: React.Dispatch<React.SetStateAction<string>>
   label: string
   min: number
   max: number
@@ -19,12 +19,10 @@ interface Props {
 const RegisterPasswordField: React.FC<Props> = (props) => {
   // 入力フォームのエラーチェック用
   const [isError, setIsError] = useState<boolean>(false)
-  // 入力フォームのエラーチェック用
-  const [isOk, setIsOk] = useState<boolean>(false)
   // 入力文字数カウント用
   const [count, setCount] = useState<number>(0)
   // InputLabel の表示/非表示
-  const [visible, setVisible] = useState<boolean>(false)
+  const [isLabelVisible, setIsLabelVisible] = useState<boolean>(false)
   // input の text， passoword　を切り替える
   const [showText, setShowText] = useState<boolean>(false)
   // 入力文字
@@ -37,9 +35,9 @@ const RegisterPasswordField: React.FC<Props> = (props) => {
   //　半角英小文字大文字数字をそれぞれ1種類以上含む min 文字以上 max 文字以下
   const _pattern = `^(?=.*?[a-z])(?=.*?\\d)(?=.*?[!-\\/:-@[-\`{-~])[!-~()]{${props.min},${props.max}}\$`
   // 項目チェック OK メッセージ
-  const _validOkMessage = '　　問題ありません👍'
+  const _validOkMessage = '　　Good 👍'
   // 項目チェック NG メッセージ
-  const _validNoMessage = '　　入力条件を満たしていません🥺'
+  const _validNoMessage = '　　No 👎'
 
   // キー入力イベント
   const handleChange = (
@@ -52,47 +50,45 @@ const RegisterPasswordField: React.FC<Props> = (props) => {
       setCount(inputText.length)
     }
     // OK メッセージ表示チェック
-    if (props.min <= text.length && isMatchWithPattern(inputText)) {
-      setIsOk(true)
+    if (isMatchWithPattern(inputText)) {
+      setIsError(false)
     } else {
-      setIsOk(false)
+      setIsError(true)
     }
   }
   // 表示アイコンクリック（パスワード表示/非表示）
   const handleClickShowPassword = () => {
     setShowText(!showText)
   }
-  // フォーム送信処理キャンセル
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault()
-  }
   // フォーカスイン
   const handleFocusIn = () => {
-    setVisible(true)
+    setIsError(!isValidation())
+    setIsLabelVisible(true)
   }
   //　フォーカスアウト
   const handleBlur = () => {
     setShowText(false)
-    setVisible(false)
+    setIsLabelVisible(false)
     if (isValidation()) {
-      props.setPasword(text)
-      setIsError(true)
-    } else {
+      props.setPassword(text)
       setIsError(false)
+    } else {
+      // エラーの場合は state　を初期化する
+      props.setPassword('')
+      setIsError(true)
     }
   }
   //　バリデーションチェック
   const isValidation = () => {
     // 入力文字チェック
-    if (!isMatchWithPattern) {
+    if (!isMatchWithPattern(text)) {
       return false
     }
     // 入力文字数チェック
     if (text.length < props.min) {
       return false
     }
+
     return true
   }
 
@@ -111,9 +107,9 @@ const RegisterPasswordField: React.FC<Props> = (props) => {
       <FormControl sx={{ width: '100%' }} variant='standard'>
         <InputLabel>
           {props.label}
-          {visible
+          {isLabelVisible
             ? _limitFormat +
-              (isOk ? _validOkMessage : _validNoMessage)
+              (isError ? _validNoMessage : _validOkMessage)
             : ''}
         </InputLabel>
         <Input
@@ -132,7 +128,6 @@ const RegisterPasswordField: React.FC<Props> = (props) => {
               <IconButton
                 aria-label='toggle password visibility'
                 onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
               >
                 {showText ? <VisibilityOff /> : <Visibility />}
               </IconButton>
