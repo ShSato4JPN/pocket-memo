@@ -8,6 +8,7 @@ import { green } from '@mui/material/colors'
 import { useRouter } from 'next/router'
 import AppTheme from '../../../styles/theme/AppTheme'
 import LoginModal from './LoginModal'
+import CreateUserModal from './CreateUserModal'
 
 const MemoCreateButton = styled(Button)({
   fontSize: 17,
@@ -24,15 +25,20 @@ const UserCreateButton = styled(Button)({
 
 const Top: React.FC = () => {
   const router = useRouter()
+  //router.push('/create/user')
 
-  const [dialogOpen, setDialogOpen] = useState<boolean>(false)
+  const [loginDialogOpen, setLoginDialogpen] =
+    useState<boolean>(false)
+
+  const [createUserDialogOpen, setCreateUserDialogOpen] =
+    useState<boolean>(false)
 
   const handleMemoCreateClick = () => {
-    setDialogOpen(true)
+    setLoginDialogpen(true)
   }
 
   const handleUserCreateClick = () => {
-    router.push('/create/user')
+    setCreateUserDialogOpen(true)
   }
 
   return (
@@ -103,7 +109,14 @@ const Top: React.FC = () => {
           </Grid>
         </Grid>
       </Box>
-      <LoginModal open={dialogOpen} setOpen={setDialogOpen} />
+      <LoginModal
+        open={loginDialogOpen}
+        setOpen={setLoginDialogpen}
+      />
+      <CreateUserModal
+        open={createUserDialogOpen}
+        setOpen={setCreateUserDialogOpen}
+      />
     </ThemeProvider>
   )
 }
