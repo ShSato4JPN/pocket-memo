@@ -5,12 +5,12 @@ import Input from '@mui/material/Input'
 import Box from '@mui/material/Box'
 
 interface Props {
-  text: string
-  setText: React.Dispatch<React.SetStateAction<string>>
-  id: string
+  setMemoBody: React.Dispatch<React.SetStateAction<string>>
 }
 
 const MemoEditArea: React.FC<Props> = (props) => {
+  // 入力文字
+  const [text, setText] = useState<string>('')
   // 入力文字数カウント用
   const [textCount, setTextCount] = useState<number>(0)
   // InputLabel の表示/非表示
@@ -26,10 +26,12 @@ const MemoEditArea: React.FC<Props> = (props) => {
   // 表示行数のデフォルト値
 
   // テキスト入力イベント
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     let inputText = event.target.value
     if (inputText.length <= _maxTextLength) {
-      props.setText(inputText)
+      setText(inputText)
       setTextCount(inputText.length)
     }
   }
@@ -43,24 +45,31 @@ const MemoEditArea: React.FC<Props> = (props) => {
   }
   // テキストに含まれている改行コードの数を取得
   const getNewLineCount = (text: string) => {
-    return (props.text.match(/(\r\n|\n|\r)/g) || []).length
+    return (text.match(/(\r\n|\n|\r)/g) || []).length
   }
 
   return (
     <Box sx={{ width: '100%' }}>
-      <FormControl sx={{ width: '100%' }} variant='standard'>
-        <InputLabel>{'メモ' + (visible ? _limitFormat : '')}</InputLabel>
+      <FormControl
+        sx={{ width: '100%', border: 'none' }}
+        variant='standard'
+      >
+        <InputLabel>
+          {'メモ' + (visible ? _limitFormat : '')}
+        </InputLabel>
         <Input
           multiline={true}
+          minRows={10}
           maxRows={_maxRowsCount}
-          value={props.text}
+          value={text}
           fullWidth
           onChange={handleChange}
           onFocus={handleFocusIn}
           onBlur={handleBlur}
+          disableUnderline
           sx={{
             fontFamily: 'monospace',
-            fontSize: 20,
+            fontSize: 18,
           }}
         />
       </FormControl>

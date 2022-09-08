@@ -6,12 +6,12 @@ import Box from '@mui/material/Box'
 import FormHelperText from '@mui/material/FormHelperText'
 
 interface Props {
-  text: string
-  setText: React.Dispatch<React.SetStateAction<string>>
-  id: string
+  setMemoTitle: React.Dispatch<React.SetStateAction<string>>
 }
 
 const MemoTitleField: React.FC<Props> = (props) => {
+  // 入力文字
+  const [text, setText] = useState<string>('')
   // 入力文字数カウント用
   const [count, setCount] = useState<number>(0)
   // InputLabel の表示/非表示
@@ -23,10 +23,12 @@ const MemoTitleField: React.FC<Props> = (props) => {
   const _limitFormat = `　　${count} / ${_maxTextLength}`
 
   // キー入力イベント
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     let inputText = event.target.value
     if (inputText.length <= _maxTextLength) {
-      props.setText(inputText)
+      setText(inputText)
       setCount(inputText.length)
     }
   }
@@ -46,16 +48,16 @@ const MemoTitleField: React.FC<Props> = (props) => {
       }}
     >
       <FormControl sx={{ width: '100%' }} variant='standard'>
-        <InputLabel htmlFor={props.id}>
+        <InputLabel>
           {'タイトル' + (visible ? _limitFormat : '')}
         </InputLabel>
         <Input
-          id={props.id}
           type='text'
-          value={props.text}
+          value={text}
           onChange={handleChange}
           onFocus={handleFocusIn}
           onBlur={handleBlur}
+          disableUnderline
           sx={{
             fontFamily: 'monospace',
             fontSize: 20,
