@@ -24,16 +24,17 @@ const CreateUserForm: React.FC = () => {
     <ThemeProvider theme={AppTheme}>
       <Grid
         container
+        spacing={1}
         sx={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
         }}
       >
-        <Grid item xs={12} width={350}>
+        <Grid item xs={12} width={{ xs: 350, md: 500 }}>
           <MemoTitleField setMemoTitle={setMemoTitle} />
         </Grid>
-        <Grid item xs={12} width={350}>
+        <Grid item xs={12} width={{ xs: 350, md: 500 }}>
           <MemoEditArea setMemoBody={setMemoBody} />
         </Grid>
       </Grid>

@@ -1,14 +1,14 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import Button from '@mui/material/Button'
-import LoginModal from '../../../views/components/modules/LoginModal'
+import CreateMemoModal from '../../../views/components/modules/CreateMemoModal'
 
 export default {
-  title: 'modules/LoginModal',
-  component: LoginModal,
-} as ComponentMeta<typeof LoginModal>
+  title: 'modules/CreateMemoModal',
+  component: CreateMemoModal,
+} as ComponentMeta<typeof CreateMemoModal>
 
-const Template: ComponentStory<typeof LoginModal> = (args) => {
+const Template: ComponentStory<typeof CreateMemoModal> = (args) => {
   const [open, setOpen] = React.useState<boolean>(false)
   const handleClick = () => {
     setOpen(true)
@@ -16,7 +16,7 @@ const Template: ComponentStory<typeof LoginModal> = (args) => {
   return (
     <>
       <Button onClick={handleClick}>show dialog</Button>
-      <LoginModal open={open} setOpen={setOpen} />
+      <CreateMemoModal open={open} setOpen={setOpen} />
     </>
   )
 }

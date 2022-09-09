@@ -40,7 +40,7 @@ const CreateUserModal: React.FC<State> = (props) => {
       <DialogContent>
         <IconButton
           edge='start'
-          color='inherit'
+          color='success'
           onClick={handleClose}
           aria-label='close'
         >

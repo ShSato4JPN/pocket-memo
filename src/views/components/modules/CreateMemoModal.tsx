@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import Dialog from '@mui/material/Dialog'
 import DialogContent from '@mui/material/DialogContent'
-import LoginForm from '../blocks/LoginForm'
 import Slide from '@mui/material/Slide'
 import { TransitionProps } from '@mui/material/transitions'
 import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
+import CreateIcon from '@mui/icons-material/Create'
+import LoginForm from '../blocks/CreateMemoForm'
 interface State {
   open: boolean
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
@@ -40,11 +41,20 @@ const LoginModal: React.FC<State> = (props) => {
       <DialogContent>
         <IconButton
           edge='start'
-          color='inherit'
+          color='success'
+          onClick={handleClose}
+          aria-label='close'
+          sx={{ marginRight: 3 }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <IconButton
+          edge='start'
+          color='success'
           onClick={handleClose}
           aria-label='close'
         >
-          <CloseIcon />
+          <CreateIcon />
         </IconButton>
         <LoginForm />
       </DialogContent>
